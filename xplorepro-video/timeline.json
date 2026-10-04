@@ -1,0 +1,142 @@
+{
+ "bpm": 120,
+ "duration": 50.0,
+ "scenes": [
+  {
+   "id": "chaos",
+   "start": 0.0,
+   "end": 6.5,
+   "vo": [
+    {
+     "i": 0,
+     "start": 0.45,
+     "dur": 3.676,
+     "text": "Placement season. Resumes, skills, mock interviews, deadlines..."
+    },
+    {
+     "i": 1,
+     "start": 4.246,
+     "dur": 1.919,
+     "text": "and no idea what to work on next."
+    }
+   ]
+  },
+  {
+   "id": "reveal",
+   "start": 6.5,
+   "end": 8.5,
+   "vo": [
+    {
+     "i": 2,
+     "start": 6.95,
+     "dur": 1.19,
+     "text": "Meet XplorePro."
+    }
+   ]
+  },
+  {
+   "id": "eco",
+   "start": 8.5,
+   "end": 13.5,
+   "vo": [
+    {
+     "i": 3,
+     "start": 8.75,
+     "dur": 4.052,
+     "text": "One AI-powered ecosystem for students, colleges, and employers."
+    }
+   ]
+  },
+  {
+   "id": "mentor",
+   "start": 13.5,
+   "end": 20.5,
+   "vo": [
+    {
+     "i": 4,
+     "start": 13.75,
+     "dur": 6.242,
+     "text": "Your AI career mentor learns your profile, spots your skill gaps, and builds a roadmap that's truly yours."
+    }
+   ]
+  },
+  {
+   "id": "ats",
+   "start": 20.5,
+   "end": 24.0,
+   "vo": [
+    {
+     "i": 5,
+     "start": 20.75,
+     "dur": 2.871,
+     "text": "Score your resume against real ATS filters."
+    }
+   ]
+  },
+  {
+   "id": "interview",
+   "start": 24.0,
+   "end": 29.0,
+   "vo": [
+    {
+     "i": 6,
+     "start": 24.25,
+     "dur": 4.011,
+     "text": "Practise AI interviews, from HR, to technical, to coding rounds."
+    }
+   ]
+  },
+  {
+   "id": "proctor",
+   "start": 29.0,
+   "end": 33.5,
+   "vo": [
+    {
+     "i": 7,
+     "start": 29.25,
+     "dur": 3.755,
+     "text": "Colleges run AI-proctored assessments that hold up to scrutiny."
+    }
+   ]
+  },
+  {
+   "id": "hire",
+   "start": 33.5,
+   "end": 38.5,
+   "vo": [
+    {
+     "i": 8,
+     "start": 33.75,
+     "dur": 4.302,
+     "text": "And employers hire pre-assessed talent, with evidence before the first interview."
+    }
+   ]
+  },
+  {
+   "id": "converge",
+   "start": 38.5,
+   "end": 43.5,
+   "vo": [
+    {
+     "i": 9,
+     "start": 38.75,
+     "dur": 4.257,
+     "text": "XplorePro. Readiness, assessment, training and hiring. All connected."
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "start": 43.5,
+   "end": 50.0,
+   "vo": [
+    {
+     "i": 10,
+     "start": 43.75,
+     "dur": 2.34,
+     "text": "Book a demo at XplorePro dot AI."
+    }
+   ]
+  }
+ ]
+}
