@@ -1,0 +1,207 @@
+<!doctype html><html><head><meta charset="utf-8"><title>XplorePro Motion Video</title>
+<style>
+:root{--canvas:#FBFAF7;--ink:#20202C;--muted:#5A5A6B;--violet:#7438F2;--deep:#5E27D8;--lav:#F1EBFF;--contour:#DCCEFF;--ok:#1B7F5A;--warn:#A65D00}
+*{box-sizing:border-box;margin:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--canvas);font-family:"Liberation Sans",Arial,"Noto Color Emoji",sans-serif;color:var(--ink)}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--canvas)}
+#grid{position:absolute;inset:-60px;background-image:radial-gradient(circle,#DCCEFF 2px,transparent 2.5px);background-size:60px 60px;opacity:.55}
+#glow{position:absolute;right:-200px;top:-200px;width:1000px;height:1000px;border-radius:50%;background:radial-gradient(circle,#E6DAFF 0%,rgba(251,250,247,0) 65%)}
+.scene{position:absolute;inset:0;visibility:hidden}
+.txt{position:absolute;left:120px;top:0;bottom:0;width:820px;display:flex;flex-direction:column;justify-content:center;gap:30px}
+.eyebrow{font-size:26px;letter-spacing:.14em;text-transform:uppercase;color:var(--violet);font-weight:700}
+h1{font-size:82px;line-height:1.05;letter-spacing:-.02em;font-weight:700}
+h1 .w{display:inline-block;margin-right:.24em;will-change:transform}
+h1 .v{color:var(--violet)}
+p.sub{font-size:34px;line-height:1.35;color:var(--muted);max-width:720px}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chip{background:var(--lav);border:2px solid var(--contour);color:var(--deep);border-radius:999px;padding:12px 26px;font-size:28px;font-weight:700}
+.panel{position:absolute;left:1000px;top:110px;width:820px;height:860px;background:#fff;border:2px solid var(--contour);border-radius:36px;box-shadow:0 30px 80px rgba(94,39,216,.14);overflow:hidden}
+.panel svg{position:absolute;inset:0}
+.abs{position:absolute}
+.card{position:absolute;background:#fff;border:2px solid var(--contour);border-radius:24px}
+.lbl{font-size:26px;font-weight:700;color:var(--ink)}
+.small{font-size:22px;color:var(--muted)}
+.pill{display:inline-block;white-space:nowrap;border-radius:999px;padding:6px 16px;font-size:22px;font-weight:700}
+.bubble{position:absolute;background:var(--violet);color:#fff;border-radius:24px 24px 24px 6px;padding:20px 26px;font-size:28px;line-height:1.3}
+#brand{position:absolute;left:40px;top:-30px;height:260px;clip-path:inset(30% 3% 30% 3%);filter:brightness(1.07) contrast(1.1);mix-blend-mode:multiply}
+#bar{position:absolute;left:0;bottom:0;height:8px;background:var(--violet);width:0}
+#wipe{position:absolute;top:0;bottom:0;width:2100px;left:0;background:linear-gradient(100deg,#5E27D8,#7438F2 60%,#9B6BFF);transform:translateX(-2200px);z-index:10}
+.btn{display:inline-block;background:var(--violet);color:#fff;font-size:38px;font-weight:700;padding:26px 60px;border-radius:999px;box-shadow:0 14px 40px rgba(116,56,242,.35)}
+</style></head><body><div id="stage"><div id="grid"></div><div id="glow"></div>
+<img id="brand" src="assets/logo.jpeg">
+<div id="scenes"></div><div id="bar"></div><div id="wipe"></div></div>
+<script>
+const DUR=33,C=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)),E=x=>1-Math.pow(1-C(x),3),
+ B=x=>{x=C(x);const c=1.70158;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)},
+ P=(lt,a,d)=>C((lt-a)/d),L=(a,b,p)=>a+(b-a)*p,TAU=Math.PI*2;
+const NS='http://www.w3.org/2000/svg';
+const ring=(id,cx,cy,r,w,col='#7438F2')=>`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#F1EBFF" stroke-width="${w}"/><circle id="${id}" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})" stroke-dasharray="${TAU*r}" stroke-dashoffset="${TAU*r}"/>`;
+const setRing=(el,r,p)=>el.setAttribute('stroke-dashoffset',TAU*r*(1-p));
+
+/* ---------- scene builders: return update(lt) ---------- */
+function bRoad(p){
+ const names=['Resume','Skills','Interviews','Deadlines','Companies'];
+ p.innerHTML=`<svg viewBox="0 0 820 860"><path id="rd0" d="M60 780 C250 800 290 620 410 600 S580 470 540 380 S640 190 770 110" fill="none" stroke="#F1EBFF" stroke-width="44" stroke-linecap="round"/><path id="rd" d="M60 780 C250 800 290 620 410 600 S580 470 540 380 S640 190 770 110" fill="none" stroke="#7438F2" stroke-width="10" stroke-linecap="round" stroke-dasharray="1 1"/><g id="pins"></g></svg>`+
+ names.map((n,i)=>`<div class="chip abs" id="c${i}" style="white-space:nowrap">${n}</div>`).join('')+`<div class="abs" id="goal" style="font-size:90px;left:700px;top:30px">🎯</div>`;
+ const rd=p.querySelector('#rd'),len=rd.getTotalLength(),pins=p.querySelector('#pins');
+ rd.setAttribute('stroke-dasharray',`18 14`);
+ const fr=[.14,.32,.5,.7,.88],pts=fr.map(f=>rd.getPointAtLength(len*f)),pc=[];
+ pts.forEach((q,i)=>{const g=document.createElementNS(NS,'g');g.innerHTML=`<circle r="26" fill="#7438F2"/><circle r="10" fill="#fff"/>`;g.setAttribute('transform',`translate(${q.x} ${q.y})`);pins.appendChild(g);pc.push(g)});
+ const mask=document.createElementNS(NS,'path');
+ const start=[[40,90],[540,60],[560,420],[60,470],[300,280]];
+ return lt=>{
+  const dp=E(P(lt,1.7,2.0)); rd.style.strokeDasharray=''; 
+  rd.setAttribute('stroke-dasharray',`18 14`);
+  // reveal via clip: draw using second dashed overlay approximated by opacity gradient
+  p.querySelector('#rd0').setAttribute('stroke-dasharray',`${len*dp} ${len}`);
+  rd.setAttribute('opacity',dp>0?1:0);
+  rd.setAttribute('stroke-dasharray',`18 14`);
+  rd.style.clipPath='none';
+  rd.setAttribute('stroke-dashoffset',0);
+  // chips
+  names.forEach((n,i)=>{
+   const c=p.querySelector('#c'+i),a=2.2+i*.25,cv=E(P(lt,a,.8));
+   const fx=start[i][0]+Math.sin(lt*1.4+i*1.7)*22,fy=start[i][1]+Math.cos(lt*1.1+i*2.3)*22;
+   const tx=pts[i].x+36,ty=pts[i].y-26;
+   c.style.left=L(fx,tx,cv)+'px';c.style.top=L(fy,ty,cv)+'px';
+   c.style.transform=`rotate(${(1-cv)*Math.sin(lt*2+i)*10}deg)`;
+   c.style.opacity=E(P(lt,.1+i*.12,.5));
+   const pp=B(P(lt,a+.65,.4));pc[i].setAttribute('transform',`translate(${pts[i].x} ${pts[i].y}) scale(${pp})`);
+  });
+  const g=p.querySelector('#goal');g.style.transform=`scale(${B(P(lt,3.8,.5))})`;
+ };
+}
+function bHub(p){
+ const nodes=[['🎓','Readiness',-90],['🛡️','Assessment',0],['📈','Training',90],['🤝','Hiring',180]],R=270,cx=410,cy=400;
+ const pos=nodes.map(n=>({x:cx+R*Math.cos(n[2]*Math.PI/180),y:cy+R*Math.sin(n[2]*Math.PI/180)}));
+ p.innerHTML=`<svg viewBox="0 0 820 860"><circle id="pulse" cx="${cx}" cy="${cy}" r="100" fill="none" stroke="#7438F2" stroke-width="4"/>`+
+  pos.map((q,i)=>`<line id="ln${i}" x1="${cx}" y1="${cy}" x2="${q.x}" y2="${q.y}" stroke="#DCCEFF" stroke-width="6" stroke-linecap="round" stroke-dasharray="${R} ${R}" stroke-dashoffset="${R}"/><circle id="dot${i}" r="10" fill="#7438F2"/>`).join('')+
+  `<g id="hub"><circle cx="${cx}" cy="${cy}" r="95" fill="#7438F2"/><text x="${cx}" y="${cy+32}" text-anchor="middle" font-size="96" font-weight="700" fill="#fff" font-family="Liberation Sans">X</text></g>`+
+  pos.map((q,i)=>`<g id="nd${i}"><circle cx="${q.x}" cy="${q.y}" r="74" fill="#F1EBFF" stroke="#DCCEFF" stroke-width="4"/><text x="${q.x}" y="${q.y+22}" text-anchor="middle" font-size="64">${nodes[i][0]}</text><text x="${q.x}" y="${q.y+118}" text-anchor="middle" font-size="30" font-weight="700" fill="#20202C" font-family="Liberation Sans">${nodes[i][1]}</text></g>`).join('')+`</svg>`+
+  `<div class="abs" id="aud" style="left:0;right:0;bottom:36px;text-align:center;font-size:28px;color:#5E27D8;font-weight:700">Students &nbsp;·&nbsp; Institutions &nbsp;·&nbsp; Employers</div>`;
+ const q=s=>p.querySelector(s);
+ return lt=>{
+  const h=q('#hub');h.style.transformOrigin=`${cx}px ${cy}px`;h.style.transform=`scale(${B(P(lt,.2,.6))})`;
+  const pr=(lt%1.6)/1.6;q('#pulse').setAttribute('r',95+pr*110);q('#pulse').setAttribute('opacity',(1-pr)*.6*(lt>.6?1:0));
+  pos.forEach((s,i)=>{
+   q('#ln'+i).setAttribute('stroke-dashoffset',R*(1-E(P(lt,.8+i*.15,.7))));
+   const n=q('#nd'+i);n.style.transformOrigin=`${s.x}px ${s.y}px`;n.style.transform=`scale(${B(P(lt,1.2+i*.2,.6))})`;
+   const f=((lt-2)*.55+i*.25)%1,v=lt>2?1:0,d=q('#dot'+i);
+   d.setAttribute('cx',L(cx,s.x,i%2?1-f:f));d.setAttribute('cy',L(cy,s.y,i%2?1-f:f));d.setAttribute('opacity',v);
+  });
+  q('#aud').style.opacity=E(P(lt,2.8,.6));
+ };
+}
+function bMentor(p){
+ const r=96,msg='Focus on communication this week — 3 mock rounds.';
+ const skills=[['Aptitude',82],['Coding',68],['Communication',41],['Interview',57]];
+ p.innerHTML=`<svg viewBox="0 0 820 860">${ring('mr',170,180,r,28)}</svg><div class="abs" id="score" style="left:100px;top:132px;width:140px;text-align:center;font-size:62px;font-weight:700;color:#5E27D8">0</div>
+ <div class="abs" style="left:320px;top:120px"><div class="lbl" style="font-size:36px">Placement Readiness</div><div class="small" style="margin-top:8px;width:440px">From profile, assessments &amp; AI interviews</div></div>`+
+ skills.map((s,i)=>`<div class="abs" style="left:60px;top:${340+i*76}px;width:700px"><div style="display:flex;justify-content:space-between;font-size:26px;font-weight:700"><span>${s[0]}</span><span class="v" id="sv${i}" style="color:${s[1]<50?'#A65D00':'#5E27D8'}">0</span></div><div style="height:16px;background:#F1EBFF;border-radius:8px;margin-top:8px;overflow:hidden"><div id="sb${i}" style="height:100%;width:0;border-radius:8px;background:${s[1]<50?'#E8A03A':'#7438F2'}"></div></div></div>`).join('')+
+ `<div class="bubble" id="bub" style="left:60px;top:680px;width:660px;min-height:100px"><span id="typ"></span></div>`;
+ const q=s=>p.querySelector(s),mr=q('#mr');
+ return lt=>{
+  const rp=E(P(lt,.5,1.6));setRing(mr,r,rp*.78);q('#score').textContent=Math.round(rp*78);
+  skills.forEach((s,i)=>{const v=E(P(lt,1.2+i*.25,1));q('#sb'+i).style.width=s[1]*v+'%';q('#sv'+i).textContent=Math.round(s[1]*v)});
+  const b=q('#bub');b.style.opacity=E(P(lt,2.6,.4));b.style.transform=`translateY(${(1-E(P(lt,2.6,.4)))*30}px)`;
+  q('#typ').textContent=msg.slice(0,Math.floor(C((lt-3.0)/1.4)*msg.length));
+ };
+}
+function bResume(p){
+ const r=84,chk=['Keywords matched','Formatting fixed','Projects evidenced'];
+ p.innerHTML=`<div class="card" style="left:40px;top:40px;width:740px;height:380px"></div><svg viewBox="0 0 820 860">${ring('ar',170,230,r,24)}</svg>
+ <div class="abs" id="ats" style="left:100px;top:190px;width:140px;text-align:center;font-size:56px;font-weight:700;color:#5E27D8">42</div>
+ <div class="abs" style="left:56px;top:350px;width:230px;text-align:center" class="small"><span class="small">ATS score</span></div>
+ `+chk.map((c,i)=>`<div class="abs" id="ck${i}" style="left:340px;top:${100+i*90}px;font-size:32px;font-weight:700"><span id="ct${i}" style="display:inline-block;width:44px;height:44px;border-radius:50%;background:#1B7F5A;color:#fff;text-align:center;line-height:44px;margin-right:16px">✓</span>${c}</div>`).join('')+
+ `<div class="card" style="left:40px;top:450px;width:740px;height:370px"></div><div class="abs" style="left:76px;top:480px;width:660px"><div class="small" style="color:#7438F2;font-weight:700;letter-spacing:.1em">AI INTERVIEW · ROUND 2</div><div id="qq" style="font-size:32px;font-weight:700;margin-top:10px;line-height:1.25;min-height:80px"></div></div>
+ <div class="abs" id="wv" style="left:76px;top:660px;width:660px;height:130px;display:flex;align-items:center;gap:8px">`+Array.from({length:34},(_,i)=>`<div style="flex:1;border-radius:6px;background:#7438F2;height:10px"></div>`).join('')+`</div>`;
+ const q=s=>p.querySelector(s),ar=q('#ar'),q1='Walk me through a project you are proud of.',bars=[...q('#wv').children];
+ return lt=>{
+  const v=E(P(lt,.6,1.8));setRing(ar,r,(.42+.49*v));q('#ats').textContent=Math.round(42+49*v);
+  chk.forEach((c,i)=>{const e=B(P(lt,1.3+i*.45,.4));q('#ck'+i).style.opacity=E(P(lt,1.3+i*.45,.3));q('#ct'+i).style.transform=`scale(${e})`});
+  q('#qq').textContent=q1.slice(0,Math.floor(C((lt-2.2)/1.2)*q1.length));
+  const on=lt>2.8?1:0;bars.forEach((b,i)=>{b.style.height=(on?14+86*Math.abs(Math.sin(lt*7+i*.65))*(.5+.5*Math.sin(lt*2.3+i*.4)):10)+'px';b.style.opacity=on?1:.3});
+ };
+}
+function bProc(p){
+ const items=[['Aptitude',100],['Coding',100],['Communication',100],['Video',100]],r=70;
+ p.innerHTML=`<svg viewBox="0 0 820 860">`+items.map((it,i)=>ring('pr'+i,[210,610][i%2],[170,170,410,410][i],r,20)).join('')+`</svg>`+
+ items.map((it,i)=>`<div class="abs" style="left:${[110,510][i%2]-30}px;top:${[260,260,500,500][i]}px;width:220px;text-align:center;font-size:28px;font-weight:700">${it[0]}</div><div class="abs" id="pk${i}" style="left:${[210,610][i%2]-30}px;top:${[170,170,410,410][i]-30}px;width:60px;height:60px;border-radius:50%;background:#1B7F5A;color:#fff;text-align:center;line-height:60px;font-size:34px">✓</div>`).join('')+
+ `<div class="card" style="left:40px;top:600px;width:740px;height:220px;background:#20202C;border-color:#20202C"></div>
+ <div class="abs" style="left:76px;top:626px;color:#DCCEFF;font-size:22px;letter-spacing:.12em;font-weight:700">AI PROCTORING · LIVE</div>
+ <div class="abs" id="scan" style="left:76px;top:672px;width:668px;height:6px;border-radius:3px;background:#7438F2"></div>
+ <div class="abs" id="b1" style="left:76px;top:722px"><span class="pill" style="background:#1B7F5A;color:#fff">Identity verified ✓</span></div>
+ <div class="abs" id="b2" style="left:350px;top:722px"><span class="pill" style="background:#1B7F5A;color:#fff">Single screen ✓</span></div>
+ <div class="abs" id="b3" style="left:580px;top:722px"><span class="pill" style="background:#1B7F5A;color:#fff">No flags ✓</span></div>`;
+ const q=s=>p.querySelector(s);
+ return lt=>{
+  items.forEach((it,i)=>{const e=E(P(lt,.6+i*.5,1.1));setRing(q('#pr'+i),r,e);const k=q('#pk'+i);k.style.transform=`scale(${B(P(lt,1.7+i*.5,.4))})`;});
+  q('#scan').style.top=(672+Math.sin(lt*3)*0+0)+'px';q('#scan').style.transform=`translateX(${Math.sin(lt*2.4)*0}px) scaleX(${.15+.85*Math.abs(Math.sin(lt*1.6))})`;q('#scan').style.transformOrigin='left';
+  [1,2,3].forEach((n,i)=>{const e=B(P(lt,2.4+i*.4,.4));q('#b'+n).style.transform=`scale(${e})`;q('#b'+n).style.transformOrigin='left center'});
+ };
+}
+function bHire(p){
+ const rows=[['A. Sharma',92],['R. Menon',88],['K. Iyer',85],['S. Das',81]];
+ p.innerHTML=`<div class="abs lbl" style="left:50px;top:44px;font-size:34px">Pre-assessed candidates</div><div class="abs small" style="left:50px;top:92px">Reviewed with assessment evidence — before interview time is spent</div>`+
+ rows.map((r,i)=>`<div class="card" id="rw${i}" style="left:40px;top:${160+i*150}px;width:740px;height:126px"><div class="abs" style="left:24px;top:30px;width:66px;height:66px;border-radius:50%;background:#F1EBFF;color:#5E27D8;font-weight:700;font-size:28px;text-align:center;line-height:66px">${r[0][0]}</div><div class="abs lbl" style="left:112px;top:22px">${r[0]}</div><div class="abs" style="left:112px;top:70px;width:380px;height:14px;background:#F1EBFF;border-radius:7px;overflow:hidden"><div id="rb${i}" style="height:100%;width:0;background:#7438F2;border-radius:7px"></div></div><div class="abs" id="rs${i}" style="left:520px;top:30px;font-size:44px;font-weight:700;color:#5E27D8">0</div><div class="abs" id="rt${i}" style="left:600px;top:38px"><span class="pill" style="background:#E7F5EF;color:#1B7F5A">Assessed ✓</span></div></div>`).join('')+
+ `<div class="abs" id="hr" style="left:40px;top:780px;width:740px;text-align:center"><span class="pill" style="background:#7438F2;color:#fff;font-size:28px;padding:12px 32px">Hire · Train · Deploy →</span></div>`;
+ const q=s=>p.querySelector(s);
+ return lt=>{
+  rows.forEach((r,i)=>{const a=.5+i*.35,e=E(P(lt,a,.6)),v=E(P(lt,a+.3,1));const c=q('#rw'+i);c.style.opacity=e;c.style.transform=`translateX(${(1-e)*120}px)`;
+   q('#rb'+i).style.width=r[1]*v+'%';q('#rs'+i).textContent=Math.round(r[1]*v);q('#rt'+i).style.opacity=P(lt,a+1.1,.3);});
+  const h=q('#hr');h.style.opacity=E(P(lt,2.6,.5));h.style.transform=`scale(${B(P(lt,2.6,.5))})`;
+ };
+}
+
+/* ---------- scenes ---------- */
+const S=[
+ {s:0,e:4.5,eb:'Placement season',h:'Preparation is never ^just one problem.^',sub:'Resume. Skills. Interviews. Deadlines. What do you work on next?',b:bRoad},
+ {s:4.5,e:9,eb:'Meet XplorePro',h:'One connected ecosystem for ^readiness,^ assessment, training & hiring.',sub:'',b:bHub},
+ {s:9,e:14,eb:'For students',h:'AI Career ^Mentorship^',sub:'A personalised roadmap, built from your profile, assessments and interview performance.',chips:['Readiness Score','Skill Gap Matrix','Action Plan'],b:bMentor},
+ {s:14,e:18.5,eb:'Practise like it\'s real',h:'Beat the filters. ^Ace the interview.^',sub:'',chips:['Resume & ATS Analysis','AI Interview Simulator'],b:bResume},
+ {s:18.5,e:23,eb:'For institutions',h:'Assessments that ^hold up to scrutiny.^',sub:'AI-proctored aptitude, coding and communication tests, plus structured campus training.',b:bProc},
+ {s:23,e:27.5,eb:'For employers',h:'Hire with ^evidence,^ before the interview.',sub:'',chips:['Campus Hiring','Pre-Assessed Talent','Hire-Train-Deploy'],b:bHire},
+ {s:27.5,e:33,cta:1}
+];
+const root=document.getElementById('scenes');
+S.forEach(sc=>{
+ const el=document.createElement('div');el.className='scene';sc.el=el;sc.words=[];sc.items=[];
+ if(sc.cta){
+  el.innerHTML=`<div class="txt" style="left:0;width:1920px;align-items:center;text-align:center"><img id="clogo" src="assets/logo.jpeg" style="height:330px;clip-path:inset(28% 3% 28% 3%);margin:-95px 0;mix-blend-mode:multiply;filter:brightness(1.07) contrast(1.1)"><h1 id="ch" style="font-size:76px"></h1><div id="cb"><span class="btn" id="cbtn">Book a Demo</span></div><div id="cu" class="small" style="font-size:36px;letter-spacing:.05em">xplorepro.ai</div></div><svg id="burst" viewBox="0 0 1920 1080" style="position:absolute;inset:0"></svg>`;
+ }else{
+  el.innerHTML=`<div class="txt"><div class="eyebrow"></div><h1></h1>${sc.sub?`<p class="sub"></p>`:''}${sc.chips?`<div class="chips"></div>`:''}</div><div class="panel"></div>`;
+  el.querySelector('.eyebrow').textContent=sc.eb;
+  if(sc.sub)el.querySelector('.sub').textContent=sc.sub;
+  if(sc.chips)sc.chips.forEach(c=>{const d=document.createElement('span');d.className='chip';d.textContent=c;el.querySelector('.chips').appendChild(d)});
+ }
+ root.appendChild(el);
+ const h=sc.cta?el.querySelector('#ch'):el.querySelector('h1');
+ const txt=sc.cta?'Start with the problem ^you need to solve.^':sc.h;let v=false;
+ txt.split(/(\^)/).forEach(seg=>{if(seg==='^'){v=!v;return}seg.split(' ').filter(Boolean).forEach(w=>{const s=document.createElement('span');s.className='w'+(v?' v':'');s.textContent=w;h.appendChild(s);sc.words.push(s)})});
+ sc.items=[...el.querySelectorAll('.eyebrow,.sub,.chip,#cb,#cu')];
+ if(sc.b)sc.upd=sc.b(el.querySelector('.panel'));
+});
+const burst=[...Array(36)].map((_,i)=>({a:i/36*TAU,v:380+(i%5)*90,r:6+(i%3)*4}));
+document.getElementById('burst').innerHTML=burst.map((b,i)=>`<circle id="p${i}" r="${b.r}" fill="${i%2?'#7438F2':'#B79BFF'}"/>`).join('');
+function render(t){
+ document.getElementById('bar').style.width=(t/DUR*100)+'%';
+ document.getElementById('grid').style.transform=`translate(${-(t*22)%60}px,${-(t*14)%60}px)`;
+ const glow=document.getElementById('glow');glow.style.transform=`translate(${Math.sin(t*.5)*60}px,${Math.cos(t*.4)*50}px)`;
+ let cur=null;
+ S.forEach(sc=>{
+  const on=t>=sc.s&&t<sc.e;sc.el.style.visibility=on?'visible':'hidden';if(!on)return;cur=sc;
+  const lt=t-sc.s,out=C((sc.e-t)/.45);
+  sc.words.forEach((w,i)=>{const p=E(P(lt,.25+i*.07,.55));w.style.opacity=p;w.style.transform=`translateY(${(1-p)*50}px)`});
+  sc.items.forEach((e,i)=>{const p=E(P(lt,.2+(e.classList.contains('chip')?.9+i*.15:.5+i*.1),.6));e.style.opacity=p;e.style.transform=`translateY(${(1-p)*30}px)`});
+  if(sc.upd){const pn=sc.el.querySelector('.panel'),pp=E(P(lt,0,.7));pn.style.opacity=pp;pn.style.transform=`translateX(${(1-pp)*140}px) scale(${.96+.04*pp})`;sc.upd(lt)}
+  if(sc.cta){const lg=sc.el.querySelector('#clogo'),pp=B(P(lt,.1,.8));lg.style.opacity=C(pp);lg.style.transform=`scale(${.6+.4*pp})`;
+   sc.el.querySelector('#cbtn').style.transform=`scale(${1+.04*Math.sin(lt*5)*(lt>1.5?1:0)})`;
+   burst.forEach((b,i)=>{const f=P(lt,.2,1.6),d=b.v*E(f);const c=document.getElementById('p'+i);c.setAttribute('cx',960+Math.cos(b.a)*d);c.setAttribute('cy',400+Math.sin(b.a)*d*.7);c.setAttribute('opacity',(1-f)*(f>0?1:0))})}
+ });
+ document.getElementById('brand').style.opacity=(cur&&!cur.cta)?1:0;
+ // wipes at boundaries
+ let wx=-2200;S.slice(1).forEach(sc=>{const w=(t-(sc.s-.35))/.7;if(w>0&&w<1)wx=-2200+(1920+2200)*w});
+ document.getElementById('wipe').style.transform=`translateX(${wx}px)`;
+}
+render(0);
+</script></body></html>
