@@ -1,0 +1,36 @@
+{
+  "fps": 30, "bpm": 120, "beat": 0.5,
+  "defaults": { "lead": 0.25, "gap": 0.16, "tail": 0.35 },
+  "scenes": [
+    { "id": "hook",       "lines": ["L01", "L02"], "lead": 0.35, "min": 5.5,
+      "bg": { "col": "#FBFAF7", "contours": { "alpha": 0.5 } } },
+    { "id": "reveal",     "lines": ["L03"], "lead": 0.5, "min": 2.4,
+      "bg": { "col": "#FBFAF7", "contours": { "alpha": 0.5, "converge": 0.55, "xs": 500, "xe": 1400 } } },
+    { "id": "eco",        "lines": ["L04", "L05"],
+      "bg": { "col": "#FBFAF7", "glow": { "x": 960, "y": 540, "r": 900, "col": "#E9DEFF", "alpha": 0.8 }, "contours": { "alpha": 0.35 } } },
+    { "id": "mentor",     "lines": ["L06", "L07"],
+      "bg": { "col": "#F1EBFF", "contours": { "alpha": 0.45, "col": "#D6C4FF" } } },
+    { "id": "readiness",  "lines": ["L08", "L09", "L10"],
+      "bg": { "col": "#FBFAF7", "contours": { "alpha": 0.32, "y0": 760 } } },
+    { "id": "colleges",   "lines": ["L11", "L12", "L13"],
+      "bg": { "col": "#FBFAF7", "glow": { "x": 1300, "y": 420, "r": 1000, "col": "#EFE7FF", "alpha": 0.7 }, "contours": { "alpha": 0.3, "y0": 820 } } },
+    { "id": "corporates", "lines": ["L14", "L15"],
+      "bg": { "col": "#FBFAF7", "contours": { "alpha": 0.32, "y0": 300 } } },
+    { "id": "converge",   "lines": ["L16"], "min": 4.2,
+      "bg": { "col": "#4A22B8", "glow": { "x": 960, "y": 540, "r": 1000, "col": "#8B55FF", "alpha": 0.7 }, "contours": { "alpha": 0.32, "col": "#B79BFF" } } },
+    { "id": "cta",        "lines": ["L17"], "tail": 3.0,
+      "bg": { "col": "#FBFAF7", "contours": { "alpha": 0.42 } } }
+  ],
+  "markers": {
+    "STOP":     { "line": "L02", "anchor": "stop" },
+    "DROP":     { "scene": "reveal" },
+    "LOGO":     { "line": "L03", "anchor": "logo" },
+    "GROOVE":   { "scene": "eco" },
+    "BREAK":    { "scene": "colleges" },
+    "REGROOVE": { "scene": "corporates" },
+    "BUILD":    { "scene": "converge", "offset": -1.5 },
+    "LOCKUP":   { "line": "L16", "anchor": "mentorship", "offset": 0.9 },
+    "CTA":      { "scene": "cta" },
+    "END":      { "end": true }
+  }
+}

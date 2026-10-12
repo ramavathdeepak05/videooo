@@ -1,0 +1,414 @@
+{
+ "duration": 60.0,
+ "bpm": 120,
+ "fps": 30,
+ "scenes": [
+  {
+   "id": "hook",
+   "start": 0.0,
+   "end": 6.5,
+   "bg": {
+    "col": "#FBFAF7",
+    "contours": {
+     "alpha": 0.5
+    }
+   },
+   "vo": [
+    {
+     "id": "L01",
+     "start": 0.35,
+     "dur": 3.2,
+     "text": "ప్లేస్‌మెంట్ సీజన్. రెజ్యూమ్, స్కిల్స్, మాక్ ఇంటర్వ్యూలు, డెడ్‌లైన్స్...",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L02",
+     "start": 3.71,
+     "dur": 2.0,
+     "text": "కానీ ముందు ఏం చేయాలో అర్థం కావట్లేదు.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "season": 0.35,
+    "resume": 1.239,
+    "skills": 1.683,
+    "mock": 2.128,
+    "deadlines": 2.928,
+    "stop": 3.98
+   }
+  },
+  {
+   "id": "reveal",
+   "start": 6.5,
+   "end": 9.0,
+   "bg": {
+    "col": "#FBFAF7",
+    "contours": {
+     "alpha": 0.5,
+     "converge": 0.55,
+     "xs": 500,
+     "xe": 1400
+    }
+   },
+   "vo": [
+    {
+     "id": "L03",
+     "start": 7.0,
+     "dur": 1.4,
+     "text": "అందుకే, ఎక్స్‌ప్లోర్‌ప్రో.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "logo": 7.431
+   }
+  },
+  {
+   "id": "eco",
+   "start": 9.0,
+   "end": 16.5,
+   "bg": {
+    "col": "#FBFAF7",
+    "glow": {
+     "x": 960,
+     "y": 540,
+     "r": 900,
+     "col": "#E9DEFF",
+     "alpha": 0.8
+    },
+    "contours": {
+     "alpha": 0.35
+    }
+   },
+   "vo": [
+    {
+     "id": "L04",
+     "start": 9.25,
+     "dur": 4.0,
+     "text": "స్టూడెంట్స్, కాలేజీలు, కంపెనీలు... అందరినీ కలిపే ఒకే ఏఐ కెరీర్ ప్లాట్‌ఫామ్.",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L05",
+     "start": 13.41,
+     "dur": 2.6,
+     "text": "పది లక్షలకు పైగా స్టూడెంట్స్, ఆరు దేశాల్లో.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "students": 9.25,
+    "colleges": 9.943,
+    "corporates": 10.477,
+    "ai": 12.077,
+    "million": 13.41,
+    "countries": 15.224
+   }
+  },
+  {
+   "id": "mentor",
+   "start": 16.5,
+   "end": 24.0,
+   "bg": {
+    "col": "#F1EBFF",
+    "contours": {
+     "alpha": 0.45,
+     "col": "#D6C4FF"
+    }
+   },
+   "vo": [
+    {
+     "id": "L06",
+     "start": 16.75,
+     "dur": 3.3,
+     "text": "మీ ఏఐ కెరీర్ మెంటర్ మీ రెజ్యూమ్, లింక్డ్‌ఇన్, గిట్‌హబ్ చూసి,",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L07",
+     "start": 20.21,
+     "dur": 3.0,
+     "text": "ఒక్క వారంలో మీకంటూ ఒక పర్సనల్ రోడ్‌మ్యాప్ ఇస్తుంది.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "mentor": 16.915,
+    "resume": 18.015,
+    "linkedin": 18.565,
+    "github": 19.28,
+    "week": 20.21,
+    "roadmap": 21.504
+   }
+  },
+  {
+   "id": "readiness",
+   "start": 24.0,
+   "end": 34.5,
+   "bg": {
+    "col": "#FBFAF7",
+    "contours": {
+     "alpha": 0.32,
+     "y0": 760
+    }
+   },
+   "vo": [
+    {
+     "id": "L08",
+     "start": 24.25,
+     "dur": 3.6,
+     "text": "మీరు ముందుకెళ్లే కొద్దీ మారే ఒకే నంబర్: మీ ప్లేస్‌మెంట్ రెడీనెస్ స్కోర్.",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L09",
+     "start": 28.01,
+     "dur": 2.2,
+     "text": "ఏటీఎస్ కి తగ్గట్టు మీ రెజ్యూమ్ సరిచేసుకోండి.",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L10",
+     "start": 30.37,
+     "dur": 3.4,
+     "text": "హెచ్ఆర్, టెక్నికల్, కోడింగ్ రౌండ్స్‌లో ఇంటర్వ్యూలు ప్రాక్టీస్ చేయండి.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "one": 25.7,
+    "score": 26.4,
+    "ats": 28.01,
+    "resume": 29.11,
+    "hr": 30.37,
+    "technical": 30.813,
+    "coding": 31.356,
+    "interview": 32.292
+   }
+  },
+  {
+   "id": "colleges",
+   "start": 34.5,
+   "end": 43.0,
+   "bg": {
+    "col": "#FBFAF7",
+    "glow": {
+     "x": 1300,
+     "y": 420,
+     "r": 1000,
+     "col": "#EFE7FF",
+     "alpha": 0.7
+    },
+    "contours": {
+     "alpha": 0.3,
+     "y0": 820
+    }
+   },
+   "vo": [
+    {
+     "id": "L11",
+     "start": 34.75,
+     "dur": 2.3,
+     "text": "కాలేజీలకు ఏఐ ప్రాక్టర్డ్ అసెస్‌మెంట్స్.",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L12",
+     "start": 37.21,
+     "dur": 3.0,
+     "text": "ఫ్లాగ్ అంటే తీర్పు కాదు, ఒక మనిషి రివ్యూ చేసే ఎవిడెన్స్.",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L13",
+     "start": 40.37,
+     "dur": 2.2,
+     "text": "మొత్తం బ్యాచ్ రెడీనెస్, ఒకే డాష్‌బోర్డ్‌లో.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "colleges": 34.75,
+    "proctored": 35.34,
+    "assessments": 36.224,
+    "flag": 37.21,
+    "verdict": 37.853,
+    "human": 38.71,
+    "evidence": 39.674,
+    "batch": 40.728,
+    "dashboard": 41.803
+   }
+  },
+  {
+   "id": "corporates",
+   "start": 43.0,
+   "end": 49.0,
+   "bg": {
+    "col": "#FBFAF7",
+    "contours": {
+     "alpha": 0.32,
+     "y0": 300
+    }
+   },
+   "vo": [
+    {
+     "id": "L14",
+     "start": 43.25,
+     "dur": 3.2,
+     "text": "కంపెనీలకు, సోర్స్ నుంచి డిప్లాయ్ వరకు, ప్రీ అసెస్డ్ టాలెంట్.",
+     "file": null,
+     "provisional": true
+    },
+    {
+     "id": "L15",
+     "start": 46.61,
+     "dur": 1.7,
+     "text": "ఫైనల్ డెసిషన్ మాత్రం మీదే.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "corporates": 43.25,
+    "source": 43.837,
+    "deploy": 44.53,
+    "preassessed": 45.33,
+    "decision": 46.61
+   }
+  },
+  {
+   "id": "converge",
+   "start": 49.0,
+   "end": 53.5,
+   "bg": {
+    "col": "#4A22B8",
+    "glow": {
+     "x": 960,
+     "y": 540,
+     "r": 1000,
+     "col": "#8B55FF",
+     "alpha": 0.7
+    },
+    "contours": {
+     "alpha": 0.32,
+     "col": "#B79BFF"
+    }
+   },
+   "vo": [
+    {
+     "id": "L16",
+     "start": 49.25,
+     "dur": 3.0,
+     "text": "ట్రైనింగ్. అసెస్‌మెంట్స్. ఏఐ కెరీర్ మెంటర్‌షిప్.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "training": 49.25,
+    "assessments": 49.938,
+    "mentorship": 50.875
+   }
+  },
+  {
+   "id": "cta",
+   "start": 53.5,
+   "end": 60.0,
+   "bg": {
+    "col": "#FBFAF7",
+    "contours": {
+     "alpha": 0.42
+    }
+   },
+   "vo": [
+    {
+     "id": "L17",
+     "start": 53.75,
+     "dur": 3.2,
+     "text": "ఈరోజే డెమో బుక్ చేసుకోండి. ఎక్స్‌ప్లోర్‌ప్రో డాట్ ఏఐ.",
+     "file": null,
+     "provisional": true
+    }
+   ],
+   "anchors": {
+    "demo": 54.112,
+    "book": 54.414,
+    "url": 55.38
+   }
+  }
+ ],
+ "markers": {
+  "STOP": 3.98,
+  "DROP": 6.5,
+  "LOGO": 7.431,
+  "GROOVE": 9.0,
+  "BREAK": 34.5,
+  "REGROOVE": 43.0,
+  "BUILD": 47.5,
+  "LOCKUP": 51.775,
+  "CTA": 53.5,
+  "END": 60.0
+ },
+ "sections": [
+  {
+   "name": "intro",
+   "start": 0.0,
+   "end": 3.98
+  },
+  {
+   "name": "stop",
+   "start": 3.98,
+   "end": 6.5
+  },
+  {
+   "name": "drop",
+   "start": 6.5,
+   "end": 9.0
+  },
+  {
+   "name": "groove",
+   "start": 9.0,
+   "end": 34.5
+  },
+  {
+   "name": "break",
+   "start": 34.5,
+   "end": 43.0
+  },
+  {
+   "name": "regroove",
+   "start": 43.0,
+   "end": 47.5
+  },
+  {
+   "name": "build",
+   "start": 47.5,
+   "end": 51.775
+  },
+  {
+   "name": "lockup",
+   "start": 51.775,
+   "end": 53.5
+  },
+  {
+   "name": "cta",
+   "start": 53.5,
+   "end": 60.0
+  }
+ ],
+ "provisional": true
+}

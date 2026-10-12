@@ -1,0 +1,16 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>XplorePro Film</title>
+<style>
+@font-face{font-family:DMSans;src:url(../node_modules/@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:DMSans;src:url(../node_modules/@fontsource/dm-sans/files/dm-sans-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Inter;src:url(../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff2);font-weight:500}
+@font-face{font-family:Inter;src:url(../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff2);font-weight:600}
+html,body{margin:0;background:#000;overflow:hidden} canvas{display:block}
+</style></head>
+<body><canvas id="c" width="1920" height="1080"></canvas>
+<!-- core (shared API, lead-owned) -->
+<script src="core/math.js"></script><script src="core/draw.js"></script><script src="core/camera.js"></script>
+<script src="core/fx.js"></script><script src="core/tilt.js"></script><script src="core/counter.js"></script>
+<script src="core/engine.js"></script>
+<!-- ui components + scenes are injected by render.js (one file each, owned by one agent) -->
+</body></html>

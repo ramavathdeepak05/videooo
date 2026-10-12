@@ -2,3 +2,5 @@ node_modules/
 audio/stem_*.wav
 audio/music_only.wav
 audio/mix.wav
+out/
+film/onscreen.json
