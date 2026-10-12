@@ -4,3 +4,4 @@ audio/music_only.wav
 audio/mix.wav
 out/
 film/onscreen.json
+__pycache__/
