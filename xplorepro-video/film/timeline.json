@@ -17,27 +17,27 @@
     {
      "id": "L01",
      "start": 0.35,
-     "dur": 3.2,
-     "text": "ప్లేస్‌మెంట్ సీజన్. రెజ్యూమ్, స్కిల్స్, మాక్ ఇంటర్వ్యూలు, డెడ్‌లైన్స్...",
-     "file": null,
-     "provisional": true
+     "dur": 3.478,
+     "text": "ప్లేస్‌మెంట్ సీజన్. రెజ్యూమ్, స్కిల్స్, మాక్ ఇంటర్వ్యూలు, డెడ్‌లైన్స్,",
+     "file": "audio/vo_te/L01.wav",
+     "provisional": false
     },
     {
      "id": "L02",
-     "start": 3.71,
-     "dur": 2.0,
-     "text": "కానీ ముందు ఏం చేయాలో అర్థం కావట్లేదు.",
-     "file": null,
-     "provisional": true
+     "start": 3.988,
+     "dur": 2.061,
+     "text": "ముందు ఏం చేయాలో అర్థం కావట్లేదు.",
+     "file": "audio/vo_te/L02.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "season": 0.35,
-    "resume": 1.239,
-    "skills": 1.683,
-    "mock": 2.128,
-    "deadlines": 2.928,
-    "stop": 3.98
+    "season": 0.395,
+    "resume": 1.418,
+    "skills": 1.911,
+    "mock": 2.42,
+    "deadlines": 3.245,
+    "stop": 4.028
    }
   },
   {
@@ -57,14 +57,14 @@
     {
      "id": "L03",
      "start": 7.0,
-     "dur": 1.4,
+     "dur": 1.502,
      "text": "అందుకే, ఎక్స్‌ప్లోర్‌ప్రో.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L03.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "logo": 7.431
+    "logo": 7.609
    }
   },
   {
@@ -88,27 +88,27 @@
     {
      "id": "L04",
      "start": 9.25,
-     "dur": 4.0,
-     "text": "స్టూడెంట్స్, కాలేజీలు, కంపెనీలు... అందరినీ కలిపే ఒకే ఏఐ కెరీర్ ప్లాట్‌ఫామ్.",
-     "file": null,
-     "provisional": true
+     "dur": 3.917,
+     "text": "స్టూడెంట్స్, కాలేజీలు, కంపెనీలు, అందరినీ కలిపే ఒకే ఏఐ కెరీర్ ప్లాట్‌ఫామ్.",
+     "file": "audio/vo_te/L04.wav",
+     "provisional": false
     },
     {
      "id": "L05",
-     "start": 13.41,
-     "dur": 2.6,
+     "start": 13.327,
+     "dur": 2.659,
      "text": "పది లక్షలకు పైగా స్టూడెంట్స్, ఆరు దేశాల్లో.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L05.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "students": 9.25,
-    "colleges": 9.943,
-    "corporates": 10.477,
-    "ai": 12.077,
-    "million": 13.41,
-    "countries": 15.224
+    "students": 9.29,
+    "colleges": 9.864,
+    "corporates": 10.422,
+    "ai": 11.965,
+    "million": 13.372,
+    "countries": 15.088
    }
   },
   {
@@ -126,27 +126,27 @@
     {
      "id": "L06",
      "start": 16.75,
-     "dur": 3.3,
+     "dur": 3.408,
      "text": "మీ ఏఐ కెరీర్ మెంటర్ మీ రెజ్యూమ్, లింక్డ్‌ఇన్, గిట్‌హబ్ చూసి,",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L06.wav",
+     "provisional": false
     },
     {
      "id": "L07",
-     "start": 20.21,
-     "dur": 3.0,
-     "text": "ఒక్క వారంలో మీకంటూ ఒక పర్సనల్ రోడ్‌మ్యాప్ ఇస్తుంది.",
-     "file": null,
-     "provisional": true
+     "start": 20.318,
+     "dur": 2.969,
+     "text": "ఒక్క వారంలో, మీకంటూ ఒక పర్సనల్ రోడ్‌మ్యాప్ ఇస్తుంది.",
+     "file": "audio/vo_te/L07.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "mentor": 16.915,
-    "resume": 18.015,
-    "linkedin": 18.565,
-    "github": 19.28,
-    "week": 20.21,
-    "roadmap": 21.504
+    "mentor": 16.988,
+    "resume": 18.219,
+    "linkedin": 18.706,
+    "github": 19.224,
+    "week": 20.363,
+    "roadmap": 21.807
    }
   },
   {
@@ -164,37 +164,37 @@
     {
      "id": "L08",
      "start": 24.25,
-     "dur": 3.6,
-     "text": "మీరు ముందుకెళ్లే కొద్దీ మారే ఒకే నంబర్: మీ ప్లేస్‌మెంట్ రెడీనెస్ స్కోర్.",
-     "file": null,
-     "provisional": true
+     "dur": 3.478,
+     "text": "మీరు ముందుకెళ్లే కొద్దీ మారే ఒకే నంబర్, మీ ప్లేస్‌మెంట్ రెడీనెస్ స్కోర్.",
+     "file": "audio/vo_te/L08.wav",
+     "provisional": false
     },
     {
      "id": "L09",
-     "start": 28.01,
-     "dur": 2.2,
-     "text": "ఏటీఎస్ కి తగ్గట్టు మీ రెజ్యూమ్ సరిచేసుకోండి.",
-     "file": null,
-     "provisional": true
+     "start": 27.888,
+     "dur": 2.47,
+     "text": "ఏటీఎస్‌కి తగ్గట్టు మీ రెజ్యూమ్ సరిచేసుకోండి.",
+     "file": "audio/vo_te/L09.wav",
+     "provisional": false
     },
     {
      "id": "L10",
-     "start": 30.37,
-     "dur": 3.4,
-     "text": "హెచ్ఆర్, టెక్నికల్, కోడింగ్ రౌండ్స్‌లో ఇంటర్వ్యూలు ప్రాక్టీస్ చేయండి.",
-     "file": null,
-     "provisional": true
+     "start": 30.518,
+     "dur": 3.488,
+     "text": "హెచ్‌ఆర్, టెక్నికల్, కోడింగ్ రౌండ్స్‌లో ఇంటర్వ్యూలు ప్రాక్టీస్ చేయండి.",
+     "file": "audio/vo_te/L10.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "one": 25.7,
-    "score": 26.4,
-    "ats": 28.01,
-    "resume": 29.11,
-    "hr": 30.37,
-    "technical": 30.813,
-    "coding": 31.356,
-    "interview": 32.292
+    "one": 25.624,
+    "score": 26.494,
+    "ats": 27.928,
+    "resume": 29.119,
+    "hr": 30.563,
+    "technical": 31.102,
+    "coding": 31.645,
+    "interview": 32.458
    }
   },
   {
@@ -219,38 +219,38 @@
     {
      "id": "L11",
      "start": 34.75,
-     "dur": 2.3,
-     "text": "కాలేజీలకు ఏఐ ప్రాక్టర్డ్ అసెస్‌మెంట్స్.",
-     "file": null,
-     "provisional": true
+     "dur": 2.35,
+     "text": "కాలేజీలకు, ఏఐ ప్రాక్టర్డ్ అసెస్‌మెంట్స్.",
+     "file": "audio/vo_te/L11.wav",
+     "provisional": false
     },
     {
      "id": "L12",
-     "start": 37.21,
-     "dur": 3.0,
+     "start": 37.26,
+     "dur": 2.979,
      "text": "ఫ్లాగ్ అంటే తీర్పు కాదు, ఒక మనిషి రివ్యూ చేసే ఎవిడెన్స్.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L12.wav",
+     "provisional": false
     },
     {
      "id": "L13",
-     "start": 40.37,
-     "dur": 2.2,
+     "start": 40.399,
+     "dur": 2.051,
      "text": "మొత్తం బ్యాచ్ రెడీనెస్, ఒకే డాష్‌బోర్డ్‌లో.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L13.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "colleges": 34.75,
-    "proctored": 35.34,
-    "assessments": 36.224,
-    "flag": 37.21,
-    "verdict": 37.853,
-    "human": 38.71,
-    "evidence": 39.674,
-    "batch": 40.728,
-    "dashboard": 41.803
+    "colleges": 34.79,
+    "proctored": 35.545,
+    "assessments": 36.381,
+    "flag": 37.295,
+    "verdict": 37.847,
+    "human": 38.694,
+    "evidence": 39.646,
+    "batch": 40.749,
+    "dashboard": 41.84
    }
   },
   {
@@ -268,26 +268,26 @@
     {
      "id": "L14",
      "start": 43.25,
-     "dur": 3.2,
+     "dur": 3.308,
      "text": "కంపెనీలకు, సోర్స్ నుంచి డిప్లాయ్ వరకు, ప్రీ అసెస్డ్ టాలెంట్.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L14.wav",
+     "provisional": false
     },
     {
      "id": "L15",
-     "start": 46.61,
-     "dur": 1.7,
+     "start": 46.718,
+     "dur": 1.702,
      "text": "ఫైనల్ డెసిషన్ మాత్రం మీదే.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L15.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "corporates": 43.25,
-    "source": 43.837,
-    "deploy": 44.53,
-    "preassessed": 45.33,
-    "decision": 46.61
+    "corporates": 43.295,
+    "source": 44.005,
+    "deploy": 44.666,
+    "preassessed": 45.42,
+    "decision": 46.753
    }
   },
   {
@@ -312,16 +312,16 @@
     {
      "id": "L16",
      "start": 49.25,
-     "dur": 3.0,
+     "dur": 3.049,
      "text": "ట్రైనింగ్. అసెస్‌మెంట్స్. ఏఐ కెరీర్ మెంటర్‌షిప్.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L16.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "training": 49.25,
-    "assessments": 49.938,
-    "mentorship": 50.875
+    "training": 49.295,
+    "assessments": 50.083,
+    "mentorship": 51.046
    }
   },
   {
@@ -338,28 +338,28 @@
     {
      "id": "L17",
      "start": 53.75,
-     "dur": 3.2,
+     "dur": 3.118,
      "text": "ఈరోజే డెమో బుక్ చేసుకోండి. ఎక్స్‌ప్లోర్‌ప్రో డాట్ ఏఐ.",
-     "file": null,
-     "provisional": true
+     "file": "audio/vo_te/L17.wav",
+     "provisional": false
     }
    ],
    "anchors": {
-    "demo": 54.112,
-    "book": 54.414,
-    "url": 55.38
+    "demo": 54.256,
+    "book": 54.523,
+    "url": 55.606
    }
   }
  ],
  "markers": {
-  "STOP": 3.98,
+  "STOP": 4.028,
   "DROP": 6.5,
-  "LOGO": 7.431,
+  "LOGO": 7.609,
   "GROOVE": 9.0,
   "BREAK": 34.5,
   "REGROOVE": 43.0,
   "BUILD": 47.5,
-  "LOCKUP": 51.775,
+  "LOCKUP": 51.946,
   "CTA": 53.5,
   "END": 60.0
  },
@@ -367,11 +367,11 @@
   {
    "name": "intro",
    "start": 0.0,
-   "end": 3.98
+   "end": 4.028
   },
   {
    "name": "stop",
-   "start": 3.98,
+   "start": 4.028,
    "end": 6.5
   },
   {
@@ -397,11 +397,11 @@
   {
    "name": "build",
    "start": 47.5,
-   "end": 51.775
+   "end": 51.946
   },
   {
    "name": "lockup",
-   "start": 51.775,
+   "start": 51.946,
    "end": 53.5
   },
   {
@@ -410,5 +410,5 @@
    "end": 60.0
   }
  ],
- "provisional": true
+ "provisional": false
 }
