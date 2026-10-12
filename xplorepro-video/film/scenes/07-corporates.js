@@ -6,7 +6,7 @@
    spark sweeps the whole path; each label rises as the spark passes and Deploy lights on 'deploy'. Candidates then advance on a measured
    conveyor rhythm (front first, 50ms stagger): each gains a small evidence chip at Assess (the lead's lands on 'preassessed', with the
    heading "Pre-assessed talent") and the solid violet Measured Path is drawn behind the lead (the hook's student) while the camera tracks
-   it laterally. The front candidate reaches Interview and is routed back to Train along a dashed arc as the lead moves up: pre-assessed
+   it laterally. The front candidate (already decided) moves on through Deploy as the lead moves up; the lead's outcome is the hiring manager's call: pre-assessed
    is not automatically qualified (neutral routing, no rejection state). On 'decision' a human hiring manager card rises above Interview
    with the chip "Hiring manager decides"; the manager approves, the spark runs down a dotted connector to the lead, and the lead moves to
    Deploy and gets a small verified tick. End (match-cut contract with converge): labels, card and nodes fold into the line left to right,
@@ -78,10 +78,10 @@ SC.corporates = {
     st.tDep = st.tA + dDep; st.tArr = st.tDep + fh;
     st.tE0 = Math.max(st.tArr + .3, L - .85); st.ED = Math.max(.4, L - .1 - st.tE0);
     st.tCard = tD - .05; st.tCardOut = st.tArr - .05; st.tTitleOut = tD - .42; st.tEndCam = st.tA - .25;
-    // candidates: 0 = front (routed back to Train), 1 = lead, 2 and 3 = followers
+    // candidates: 0 = front (already decided off-screen: moves on through Deploy), 1 = lead, 2 and 3 = followers. No automatic routing back.
     const mv = (t, a, b, d) => ({ t, a, b, d }), X = CR.X, Q = CR.Q;
     st.cands = [
-      { x0: X[0], pal: 2, r: PIPE.CR, seed: 2, moves: [mv(st.pA, X[0], X[1], HP), mv(st.pB, X[1], X[2], HP), mv(st.pC, X[2], X[3], HP), { t: st.pD, d: CR.AHOP, arc: true }] },
+      { x0: X[0], pal: 2, r: PIPE.CR, seed: 2, moves: [mv(st.pA, X[0], X[1], HP), mv(st.pB, X[1], X[2], HP), mv(st.pC, X[2], X[3], HP), mv(st.pD - .08, X[3], X[4], HP), mv(st.pD + HP + .25, X[4], X[4] + 900, .7)] },
       { x0: Q[0], pal: CR.LEAD, r: PIPE.LEADR, seed: 5, lead: true, moves: [mv(st.pA + .05, Q[0], X[0], EH), mv(st.pB + .05, X[0], X[1], HP), mv(st.pC + .05, X[1], X[2], HP), mv(st.pD + .05, X[2], X[3], HP), mv(st.tDep, X[3], X[4], fh)] },
       { x0: Q[1], pal: 4, r: PIPE.CR, seed: 7, moves: [mv(st.pA + .1, Q[1], Q[0], QH), mv(st.pB + .1, Q[0], X[0], EH), mv(st.pC + .1, X[0], X[1], HP)] },
       { x0: Q[2], pal: 1, r: PIPE.CR, seed: 9, moves: [mv(st.pA + .15, Q[2], Q[1], QH), mv(st.pB + .15, Q[1], Q[0], QH), mv(st.pC + .15, Q[0], X[0], EH)] }
@@ -117,10 +117,10 @@ SC.corporates = {
     // camera (additive springs): pull back, lean with the sweep, track the lead on each pulse, tilt up for the manager card
     const ln = Math.log;
     st.moves = [
-      { t: .02, d: 1.5, x: 100, y: -6, z: ln(.86) },
+      { t: .02, d: 1.5, x: 100, y: -6, z: ln(.93) },
       { t: tS - .05, d: 1.3, x: 40, y: 0, z: 0 },
-      { t: st.pB, d: 1.15, x: 100, y: -14, z: ln(.93 / .86) },
-      { t: st.pC, d: 1.15, x: 110, y: 0, z: ln(1 / .93) },
+      { t: st.pB, d: 1.15, x: 100, y: -14, z: ln(.97 / .93) },
+      { t: st.pC, d: 1.15, x: 110, y: 0, z: ln(1 / .97) },
       { t: st.pD, d: 1.25, x: 70, y: -66, z: ln(1.06) }
     ];
     // SFX (<= ~4/sec), panned to where things land
@@ -135,11 +135,11 @@ SC.corporates = {
     cue(s, tP - .06, 'slide', .16, { x: 960 });
     cue(s, st.cands[1].chipT, 'pop', .28, { x: sx(st.cands[1].chipT, X[1]) });
     cue(s, st.cands[2].chipT, 'tick', .16, { x: sx(st.cands[2].chipT, X[1]) });
-    cue(s, st.pD, 'reverse', .2, { x: sx(st.pD, 1420) });
+    cue(s, st.pD - .08, 'swish', .14, { x: sx(st.pD, 1700) });
     cue(s, st.tCard, 'review', .4, { x: sx(st.tCard, X[3]) });
-    cue(s, st.tA, 'click', .36, { x: sx(st.tA, X[3]) });
+    cue(s, st.tA, 'click', .22, { x: sx(st.tA, X[3]) });
     cue(s, st.tDep, 'swish', .3, { x: sx(st.tDep + .2, 1780) });
-    cue(s, st.tArr + .04, 'chime', .3, { x: sx(st.tArr, X[4]) });
+    cue(s, Math.max(st.tArr + .04, 48.3 - s.start), 'chime', .15, { x: sx(st.tArr, X[4]) });
     cue(s, st.tE0 + .42 * st.ED, 'suck', .3, { x: 1500 });
     return st;
   },
@@ -169,11 +169,6 @@ SC.corporates = {
     // track, loop-back route, the lead's measured path (extends to the screen edges at the end)
     const ext = endW(.1, 1);
     pipeTrack(Y, -300, 2500, { reveal: eio(seg(lt, -.1, .85)), alpha: 1 - endW(.1, .7) });
-    if (lt > st.pD - .22 && lt < st.pD + CR.AHOP + .05) {
-      const head = eo(seg(lt, st.pD - .22, .36)), tail = c1.au >= 0 ? c1.au : (lt < st.pD ? 0 : 1);
-      if (head > tail + .005) pathDraw(st.arc, head, COL.pale, 3, { from: tail, dash: [.5, 10] });
-      if (c1.au > 0) { g.save(); g.globalAlpha *= .5; pathDraw(st.arc, c1.au, COL.lilac, 3.5, { from: Math.max(0, c1.au - .2) }); g.restore(); }
-    }
     if (lead.x > CR.X[0] + .5 || ext > 0) {
       const wl = c.x - (W / 2 + 40) / c.z, wr = c.x + (W / 2 + 40) / c.z;
       pipePath(Y, lerp(CR.X[0], wl, ext), lerp(Math.max(CR.X[0], lead.x), wr, ext), { w: lerp(5, 6, ext) });
@@ -216,7 +211,7 @@ SC.corporates = {
       pipeCandidate(p.x, p.y, sc, lt, { r: cd.r, pal: cd.pal, lead: !!cd.lead, seed: cd.seed, morph: p.morph, blob: p.blob,
         chip: cd.chipT ? sp(lt, cd.chipT, SP.pop) : 0,
         tick: cd.lead ? sp(lt, st.tArr + .04, SP.pop) : 0,
-        train: k === 0 ? .72 * eo(seg(lt, st.pD + CR.AHOP, 1.6)) : 0,
+        train: 0,
         flash: cd.lead ? seg(lt, st.tA + .24, .5) : 0 });
     }
     // end: the lead becomes the evidence spark at Deploy (screen 1500,540 under the end camera)

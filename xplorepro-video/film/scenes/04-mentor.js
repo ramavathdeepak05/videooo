@@ -124,7 +124,7 @@ SC.mentor = {
       const lt = t0 + i * dt; let tx, ty, tz, dur;
       if (lt < 0) { tx = cam0.x; ty = cam0.y; tz = cam0.z; dur = 1; }
       else if (lt < st.tW + .05) { const d = smooth(0, st.tW, lt); tx = F.x + 16 * d; ty = F.y - 6 * d; tz = F.z + .05 * d; dur = 1.15; }
-      else { const u = mentorSparkU(lt + .12, st), p = st.L.at(u); tx = p.x + 120; ty = 428 + (p.y - 550) * .3; tz = MENTOR.JZ; dur = .85; }
+      else { const u = mentorSparkU(lt + .12, st), p = st.L.at(u); tx = p.x + 120; ty = 428 + (p.y - 550) * .3; tz = MENTOR.JZ; dur = 1.05; }
       const w = TAU / dur;
       vx += (w * w * (tx - x) - 2 * w * vx) * dt; x += vx * dt;
       vy += (w * w * (ty - y) - 2 * w * vy) * dt; y += vy * dt;
@@ -138,7 +138,7 @@ SC.mentor = {
     cue(s, st.tW, 'whoosh', .38, { x: 1300 });
     [1, 2, 3, 7].forEach(k => cue(s, t[k], 'tick', .34, { x: 960 }));
     cue(s, t[4] + .02, 'slide', .38, { x: 960 }); cue(s, t[5] + .04, 'notify', .32, { x: 960 }); cue(s, t[6] + .04, 'click', .26, { x: 960 });
-    cue(s, st.tGrow, 'swish', .3, { x: 960 }); cue(s, s.len - .06, 'thump', .4, { x: 960 });
+    cue(s, st.tGrow, 'swish', .3, { x: 960 }); cue(s, s.len - .06, 'thump', .4, { x: 960, pitch: 2 });
     return st;
   },
   draw(lt, st) {
@@ -211,11 +211,12 @@ SC.mentor = {
       // the evidence spark rides the journey
       const sa = smooth(st.tW - .05, st.tW + .1, lt) * (1 - smooth(t[7] + .05, t[7] + .35, lt));
       if (sa > .01) sparkAlong(st.L, u, { trail: .05, w: 5, alpha: sa, s: 1.1 });
-      // active label (one at a time)
-      for (let k = 1; k <= 7; k++) {
-        const N = MENTOR.NODES[k - 1], out = k < 7 ? t[k + 1] - .04 : st.tGrow - .02;
-        typeRise(JOURNEY.labels[k - 1], N[0], N[1] + 104, lt, t[k] + .02, { out, size: 33, weight: 600, face: 'I', col: COL.ink });
-      }
+      // labels on four key steps only; they stay on (earlier ones dimmed) so the journey reads as it builds
+      const KEY = [2, 4, 6, 7];
+      KEY.forEach((k, j) => {
+        const N = MENTOR.NODES[k - 1], nxt = KEY[j + 1], dimmed = nxt && lt > t[nxt] ? .5 : 1;
+        typeRise(JOURNEY.labels[k - 1], N[0], N[1] + 104, lt, t[k] + .02, { out: st.tGrow - .02, size: 33, weight: 600, face: 'I', col: COL.ink, alpha: dimmed });
+      });
     });
     // heading (screen space)
     layer(c, 0, () => typeRise('One-week discovery journey', 960, 122, lt, st.tW + .14, { out: st.tGrow - .2, size: 46, weight: 700, col: COL.ink }));

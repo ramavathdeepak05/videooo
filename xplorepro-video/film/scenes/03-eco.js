@@ -21,7 +21,7 @@ const ECO = {
     { to: 300, sfx: '+', label: 'client organisations', x: 240 },
     { to: 700, sfx: '+', label: 'colleges and universities', x: 720 },
     { to: 1000000, million: true, label: 'students', x: 1200 },
-    { to: 6, label: 'countries', x: 1680, turns: 2 }
+    { to: 6, label: 'countries', x: 1680, turns: 1 }
   ],
   SPARKLES: [[-182, -120, 26, 0], [154, -166, 34, 1], [196, 100, 18, 0], [-150, 160, 21, 1]]
 };
@@ -76,7 +76,7 @@ function ecoBand(lt, st, dim) {
     const S = ECO.STATS[i], ny = y0 + 102, ly = y0 + 176, ap = clamp(sp(lt, c.t0 - .12, SP.text) * 1.5);
     if (ap <= .01) return;
     const V = rollValue(lt, c.t0, c.dur, S.to, S.turns || 0);
-    const morph = S.million ? sp(lt, st.tM - .02, SP.ui) : 0;
+    const morph = S.million ? sp(lt, st.tM - .02, { dur: .7, bounce: 0 }) : 0;
     odometer(S.x, ny + (1 - ap) * 26, V, { to: S.to, size: 86, col: COL.deep, suffix: S.sfx, million: !!S.million, morph, alpha: ap });
     typeRise(S.label, S.x, ly, lt, c.t0 + .06, { size: 28, weight: 600, face: 'I', col: COL.muted });
   });
@@ -119,9 +119,9 @@ SC.eco = {
     // SFX
     cue(s, .02, 'pop', .35, { x: 960 });
     st.nodes.forEach(n => { cue(s, n.t - .04, 'swish', .26, { x: lerp(960, n.p[0], .4) }); cue(s, n.t + .42, 'pop', .42, { x: n.p[0] }); });
-    cue(s, st.tAi - .02, 'shine', .5, { x: 960 }); cue(s, st.tAi + .02, 'thump', .3, { x: 960 });
+    cue(s, st.tAi - .02, 'shine', .5, { x: 960 }); cue(s, st.tAi + .02, 'thump', .3, { x: 960, pitch: 2 });
     cue(s, st.tB, 'slide', .32, { x: 960 }); cue(s, c0.t0, 'roll', .22, { x: 960 });
-    st.cs.forEach((c, i) => cue(s, c.land, 'chime', i === 2 || i === 3 ? .5 : .36, { x: ECO.STATS[i].x }));
+    st.cs.forEach((c, i) => cue(s, c.land, 'chime', i === 2 ? .28 : i === 3 ? .30 : .30, { x: ECO.STATS[i].x }));
     cue(s, st.tArr, 'tick', .45, { x: 560 }); cue(s, s.len - .3, 'whoosh', .42, { x: 560 });
     // push point for the mentor cut (Students node on screen at the cut)
     ECO_LINK.push = camToScreen(ecoCam(s.len, st), ECO.NODES[0].p[0], ECO.NODES[0].p[1]).map(v => Math.round(v));
@@ -136,7 +136,7 @@ SC.eco = {
   draw(lt, st) {
     const c = ecoCam(lt, st), [hx, hy] = ECO.HUB, tAi = st.tAi;
     // focus pull onto Students before the push: everything else dims, then clears through the push window
-    const clr = smooth(st.len - .35, st.len + .05, lt), dim = 1 - .3 * smooth(st.len - .85, st.len - .35, lt) - .7 * clr, dimS = 1 - .85 * clr;
+    const clr = smooth(st.len - .3, st.len + .05, lt), dim = 1 - .3 * smooth(st.len - .45, st.len - .3, lt) - .7 * clr, dimS = 1 - .85 * clr;
     layer(c, .4, () => bokeh(lt, 21, 7, { alpha: .4 * smooth(0, 1.2, lt) * dim, size: 120 }));
     layer(c, 1, () => {
       // contour ripples from the hub on 'ai'

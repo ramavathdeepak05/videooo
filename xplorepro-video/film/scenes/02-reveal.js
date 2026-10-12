@@ -15,7 +15,7 @@ function revealRig(lt, st) {
   z = 1 + (z - 1) * (1 - endK); cx = 960 + (cx - 960) * (1 - endK); cy = 540 + (cy - 540) * (1 - endK);
   const pO = sp(lt, st.tO, SP.ui), pC = revealFin(sp(lt, st.tC, SP.ui), endK), u = pO - pC;
   const mx = lerp(960, Lk.x, u), my = lerp(540, Lk.y, u);
-  const pw = clamp(sp(lt, st.tO + .04, { dur: .75, bounce: 0 }) - revealFin(sp(lt, st.tC - .06, { dur: .55, bounce: 0 }), endK), 0, 1);
+  const pw = clamp(sp(lt, st.tO + .04, { dur: .75, bounce: 0 }) - revealFin(sp(lt, st.tC - .06, { dur: .35, bounce: 0 }), endK), 0, 1);
   return { c: { x: cx, y: cy, z, rot: 0 }, mx, my, pw };
 }
 
@@ -29,14 +29,14 @@ SC.reveal = {
     // lockup geometry with the mark kept at 150 tall (proportions as core lockup())
     const Hw = REVEAL.H / .7365, ww = Hw * WORD.sw / WORD.sh, mw = REVEAL.H * 945 / 873, gap = Hw * .052, total = mw + gap + ww;
     st.Lk = { Hw, ww, mw, gap, x: 960 - total / 2 + mw / 2, y: 540 - Hw * .0743 };
-    st.tO = Math.max(.7, st.tL - .16);                   // lockup opens on the spoken name
-    st.tC = Math.max(st.tO + 1.0, s.len - .64);          // wordmark retracts, mark returns to centre
+    st.tO = Math.max(.62, st.tL - .42);                  // lockup is fully open on the spoken name
+    st.tC = Math.max(st.tO + 1.0, s.len - .42);          // full name holds ~0.9s, then retracts quickly
     st.tSh = st.tO + .36;                                // specular sweep
     const m2w = (px, py) => [960 + (px - MARK.cx) * k, 540 + (py - MARK.cy) * k];
     st.needle = lut([m2w(MARK.dot[0], MARK.dot[1]), m2w(965, 80)], 24);
     st.sheen = document.createElement('canvas'); st.sheen.width = WORD.sw; st.sheen.height = WORD.sh;
-    cue(s, 0, 'impact', .85, { x: 960 }); cue(s, .02, 'sublogo', .8, { x: 960 });
-    cue(s, st.tO, 'slide', .35, { x: 760 }); cue(s, st.tSh, 'shine', .45, { x: 1150 }); cue(s, st.tC, 'swish', .28, { x: 1000 });
+    cue(s, 0, 'impact', .85, { x: 960, pitch: 4 }); cue(s, .02, 'sublogo', .8, { x: 960 });
+    cue(s, st.tO, 'slide', .35, { x: 760 }); cue(s, st.tSh, 'shine', .25, { x: 1150 }); cue(s, st.tC, 'swish', .28, { x: 1000 });
     return st;
   },
 

@@ -17,7 +17,7 @@ const CONV = {
   WORDS: ['Training.', 'Assessments.', 'AI Career Mentorship.'], WSIZE: 58, WGAP: 28, WY: 300, WMAX: 1400,
   MH: 150, LOCK: { y: 508, hw: 160 },
   TAG: 'Building Industry-Ready Talent at Scale', TAG_DY: 124, TAG_SIZE: 34, TAG_COL: '#E6DCFF',
-  END_Z: 1.03, HALO_END: .55, DARK: '#4A22B8', GLOW: '#8B55FF', LINE: '#B596FF', FIELD: '#C9B6FF', TRAIL: '#D9CCFF', SHADOW: 'rgba(22,8,64,1)'
+  FLOOD: .45, END_Z: 1.03, HALO_END: .55, DARK: '#4A22B8', GLOW: '#8B55FF', LINE: '#B596FF', FIELD: '#C9B6FF', TRAIL: '#D9CCFF', SHADOW: 'rgba(22,8,64,1)'
 };
 const convPathY = (x, bend) => 540 + bend * CONV.A * Math.sin(TAU * (x - CONV.SPX) / CONV.LAM);
 function convPath(bend) { const P = []; for (let x = -2600; x <= 3600; x += 160) P.push([x, convPathY(x, bend)]); return lut(P, 360); }
@@ -106,7 +106,7 @@ SC.converge = {
   cutIn: { type: 'match' },
   init(s) {
     const st = { len: s.len, tT: at(s, 'training'), tA: at(s, 'assessments'), tM: at(s, 'mentorship') };
-    st.tLock = Math.min(st.tM + .9, s.len - 1.3);              // the timeline's LOCKUP marker (music hit)
+    st.tLock = Math.min(st.tM + 1.45, s.len - 1.0);            // the timeline's LOCKUP marker (music hit, after 'mentorship' is spoken, on the beat)
     st.tArc = st.tLock - .62; st.tArr = st.tLock - .32; st.tSlide = st.tLock + .15; st.tTag = st.tLock + .5;
     st.bloom = [st.tT - .04, st.tT + .06, st.tT + .16, st.tT + .26];
     st.shrink = [st.tM - .3, st.tM - .1, st.tM + .28, st.tArc - .02];
@@ -121,15 +121,16 @@ SC.converge = {
     const pts = []; for (let i = 0; i <= 16; i++) { const u = i / 16; pts.push([lerp(lerp(ax, C[0], u), lerp(C[0], D[0], u), u), lerp(lerp(ay, C[1], u), lerp(C[1], D[1], u), u)]); }
     st.arc = lut(pts, 120); st.geo = convLockGeo(960, CONV.LOCK.y, CONV.LOCK.hw);
     cue(s, .05, 'whoosh', .3, { x: 1200 });
-    cue(s, st.tT, 'tick', .3, { x: 560 }); cue(s, st.tA, 'tick', .28, { x: 800 }); cue(s, st.tM, 'chime', .26, { x: 1080 });
-    const tr = Math.max(.3, st.tLock - 1.5); cue(s, tr, 'riser', .38, { x: 960, dur: st.tLock - tr });
-    cue(s, st.tArc, 'swish', .3, { x: 1200 });
-    cue(s, st.tLock, 'impact', .85, { x: 960 }); cue(s, st.tLock + .07, 'sublogo', .8, { x: 960 });
+    cue(s, st.tT, 'tick', .3, { x: 560 }); cue(s, st.tA, 'tick', .28, { x: 800 }); cue(s, st.tM, 'chime', .15, { x: 1080 });
+    const tr = Math.max(.3, st.tLock - 1.5); cue(s, st.tLock, 'riser', .30, { x: 960, dur: st.tLock - tr });   // riser cues are aligned to their landing
+    cue(s, st.tArc, 'swish', .18, { x: 1200 });
+    cue(s, st.tLock, 'impact', .85, { x: 960, pitch: 4 }); cue(s, st.tLock + .07, 'sublogo', .8, { x: 960 });
     cue(s, st.tSlide + .05, 'slide', .22, { x: 760 });
     return st;
   },
   bg(lt, st) {
     if (!st || st.tLock === undefined) return {};
+    if (lt < CONV.FLOOD) return { col: '#FBFAF7', glow: { x: 1500, y: 540, r: 1000, col: CONV.GLOW, alpha: 0 } };   // dark arrives as a flood (draw), not an RGB dissolve
     const k = sp(lt, st.tLock, { dur: .14, bounce: 0 }) * (1 - smooth(st.tLock + .1, st.tLock + 1.0, lt));
     return { glow: { x: 960, y: 540, r: 1000 + 180 * k, col: CONV.GLOW, alpha: .7 + .22 * k }, contours: { alpha: lerp(.32, .1, smooth(.2, 1.2, lt)) } };
   },
@@ -138,7 +139,12 @@ SC.converge = {
     const bend = sp(lt, .2, { dur: 1.4, bounce: 0 }) * (1 - smooth(st.tM - .4, st.tLock - .15, lt));
     const L = convPath(bend), pa = 1 - smooth(st.tSlide + .1, st.tSlide + .6, lt);
     const cv = eio(smooth(st.tM - .55, st.tLock - .25, lt)), fa = smooth(.15, .9, lt);
-    const lineCol = mix(COL.violet, CONV.LINE, smooth(.05, .7, lt)), lw = 6 * (1 + (1 / c.z - 1) * .5);
+    const lineCol = mix(COL.violet, CONV.LINE, smooth(0, .12, lt)), lw = 6 * (1 + (1 / c.z - 1) * .5);
+    // the dark floods out from the spark on the shared line (screen 1500,540), under everything else
+    if (lt < CONV.FLOOD + .05) {
+      const fr = 2300 * eo(seg(lt, 0, CONV.FLOOD)); g.save(); g.beginPath(); g.arc(1500, 540, Math.max(1, fr), 0, TAU); g.fillStyle = CONV.DARK; g.fill();
+      const gr = g.createRadialGradient(960, 540, 0, 960, 540, 1000); gr.addColorStop(0, rgba(CONV.GLOW, .7)); gr.addColorStop(1, rgba(CONV.GLOW, 0)); g.clip(); g.fillStyle = gr; g.fillRect(0, 0, W, H); g.restore();
+    }
     g.save(); g.translate(sx, sy);
     const ba = .28 * fa * (1 - smooth(st.tLock - .3, st.tLock + .4, lt));
     if (ba > .01) layer(c, .3, () => bokeh(lt, 23, 7, { alpha: ba, size: 150 }));

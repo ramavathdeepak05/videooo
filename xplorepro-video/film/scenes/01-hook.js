@@ -166,7 +166,7 @@ SC.hook = {
       softShadow(bx - br, y - br, 2 * br, 2 * br, br, { blur: 44, dy: 20, alpha: .16 });
       circle(bx, y, br + 9, COL.paper); ring(bx, y, br + 9, 2, COL.contour);
       let look = 0; for (let i = 0; i < st.looks.length; i++) look += (st.looks[i].v - (i ? st.looks[i - 1].v : 0)) * smooth(st.looks[i].t, st.looks[i].t + .28, lt);
-      const mood = lt < st.chips[2].t + .1 ? 'focus' : 'worried';
+      const mood = 'focus';                                   // neutral face: the chaos carries the overwhelm, not an emotion
       bust(bx, y, br, HOOK.PAL, COL.lav, lt, { mood, look, dy: (1 - pIn) * br * 1.1, seed: 2 });
       g.restore();
     });

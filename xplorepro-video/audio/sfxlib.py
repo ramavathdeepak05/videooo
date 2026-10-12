@@ -414,7 +414,7 @@ TYPES = {
     'suck':    (_suck,    'end',       .10, 'air',       False, -11.0),
     'thump':   (_thump,   0.0,         .05, 'low',       False, -9.0),
     'impact':  (_impact,  0.0,         .35, 'low',       False, -6.0),
-    'sublogo': (_sublogo, 0.0,         .08, 'low',       False, -7.0),
+    'sublogo': (_sublogo, 0.0,         .08, 'low',       True,  -7.0),
     'chime':   (_chime,   0.0,         .30, 'tonal',     True,  -13.0),
     'shine':   (_shine,   0.0,         .40, 'tonal',     True,  -14.0),
     'notify':  (_notify,  0.0,         .20, 'tonal',     True,  -14.0),

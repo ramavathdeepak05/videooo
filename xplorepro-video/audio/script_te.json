@@ -1,22 +1,124 @@
 {
-  "note": "Telugu VO, code-mixed (AP/Telangana ad register, polite మీరు). [key|word] = sync anchor (keys are an API used by scenes; do not rename), {word} = optional (may be dropped to fit). English terms are written in Telugu script using the spellings in audio/lexicon_te.json. ZWNJ (U+200C) is kept for print style and stripped before synthesis. Punctuation is a performance cue: '.' = full beat, ',' = short breath. Compliance: L12 a flag is not a verdict, a person reviews the evidence; L15 the final decision stays with the employer; no guarantees anywhere.",
-  "lines": [
-    { "id": "L01", "scene": "hook",       "budget": 3.2, "te": "[season|ప్లేస్‌మెంట్ సీజన్]. [resume|రెజ్యూమ్], [skills|స్కిల్స్], [mock|మాక్ ఇంటర్వ్యూలు], [deadlines|డెడ్‌లైన్స్],", "gloss": "Placement season. Resume, skills, mock interviews, deadlines..." },
-    { "id": "L02", "scene": "hook",       "budget": 2.0, "te": "[stop|ముందు] ఏం చేయాలో అర్థం కావట్లేదు.", "gloss": "...no idea what to do first." },
-    { "id": "L03", "scene": "reveal",     "budget": 1.4, "te": "అందుకే, [logo|ఎక్స్‌ప్లోర్‌ప్రో].", "gloss": "That's why: XplorePro." },
-    { "id": "L04", "scene": "eco",        "budget": 4.0, "te": "[students|స్టూడెంట్స్], [colleges|కాలేజీలు], [corporates|కంపెనీలు], అందరినీ కలిపే ఒకే [ai|ఏఐ] కెరీర్ ప్లాట్‌ఫామ్.", "gloss": "Students, colleges, companies: one AI career platform that brings them all together." },
-    { "id": "L05", "scene": "eco",        "budget": 2.6, "te": "[million|పది లక్షలకు] పైగా స్టూడెంట్స్, [countries|ఆరు దేశాల్లో].", "gloss": "Over a million (ten lakh) students, across six countries." },
-    { "id": "L06", "scene": "mentor",     "budget": 3.3, "te": "మీ [mentor|ఏఐ కెరీర్ మెంటర్] మీ [resume|రెజ్యూమ్], [linkedin|లింక్డ్‌ఇన్], [github|గిట్‌హబ్] చూసి,", "gloss": "Your AI career mentor looks at your resume, LinkedIn and GitHub," },
-    { "id": "L07", "scene": "mentor",     "budget": 3.0, "te": "[week|ఒక్క వారంలో], మీకంటూ ఒక [roadmap|పర్సనల్ రోడ్‌మ్యాప్] ఇస్తుంది.", "gloss": "and within just one week gives you a personal roadmap of your own." },
-    { "id": "L08", "scene": "readiness",  "budget": 3.6, "te": "{మీరు} ముందుకెళ్లే కొద్దీ మారే [one|ఒకే నంబర్], మీ [score|ప్లేస్‌మెంట్ రెడీనెస్ స్కోర్].", "gloss": "One number that moves as you progress: your Placement Readiness Score." },
-    { "id": "L09", "scene": "readiness",  "budget": 2.2, "te": "[ats|ఏటీఎస్]‌కి తగ్గట్టు {మీ} [resume|రెజ్యూమ్] సరిచేసుకోండి.", "gloss": "Fix your resume to suit ATS." },
-    { "id": "L10", "scene": "readiness",  "budget": 3.4, "te": "[hr|హెచ్‌ఆర్], [technical|టెక్నికల్], [coding|కోడింగ్] రౌండ్స్‌లో [interview|ఇంటర్వ్యూలు] ప్రాక్టీస్ చేయండి.", "gloss": "Practise interviews across HR, technical and coding rounds." },
-    { "id": "L11", "scene": "colleges",   "budget": 2.3, "te": "[colleges|కాలేజీలకు], [proctored|ఏఐ ప్రాక్టర్డ్] [assessments|అసెస్‌మెంట్స్].", "gloss": "For colleges: AI-proctored assessments." },
-    { "id": "L12", "scene": "colleges",   "budget": 3.0, "te": "[flag|ఫ్లాగ్] అంటే [verdict|తీర్పు] కాదు, ఒక [human|మనిషి] రివ్యూ చేసే [evidence|ఎవిడెన్స్].", "gloss": "A flag is not a verdict; it is evidence that a person reviews." },
-    { "id": "L13", "scene": "colleges",   "budget": 2.2, "te": "మొత్తం [batch|బ్యాచ్] రెడీనెస్, ఒకే [dashboard|డాష్‌బోర్డ్‌లో].", "gloss": "The whole batch's readiness, on one dashboard." },
-    { "id": "L14", "scene": "corporates", "budget": 3.2, "te": "[corporates|కంపెనీలకు], [source|సోర్స్] నుంచి [deploy|డిప్లాయ్] వరకు, [preassessed|ప్రీ అసెస్డ్] టాలెంట్.", "gloss": "For companies: pre-assessed talent, from source to deploy." },
-    { "id": "L15", "scene": "corporates", "budget": 1.7, "te": "[decision|ఫైనల్ డెసిషన్] మాత్రం మీదే.", "gloss": "But the final decision is yours." },
-    { "id": "L16", "scene": "converge",   "budget": 3.0, "te": "[training|ట్రైనింగ్]. [assessments|అసెస్‌మెంట్స్]. [mentorship|ఏఐ కెరీర్ మెంటర్‌షిప్].", "gloss": "Training. Assessments. AI career mentorship." },
-    { "id": "L17", "scene": "cta",        "budget": 3.2, "te": "ఈరోజే [demo|డెమో] [book|బుక్] చేసుకోండి. [url|ఎక్స్‌ప్లోర్‌ప్రో డాట్ ఏఐ].", "gloss": "Book a demo today. xplorepro dot ai." }
-  ]
+ "note": "Telugu VO, code-mixed (AP/Telangana ad register, polite మీరు). [key|word] = sync anchor (keys are an API used by scenes; do not rename), {word} = optional (may be dropped to fit). English terms are written in Telugu script using the spellings in audio/lexicon_te.json. ZWNJ (U+200C) is kept for print style and stripped before synthesis. Punctuation is a performance cue: '.' = full beat, ',' = short breath. Compliance: L12 a flag is not a verdict, a person reviews the evidence; L15 the final decision stays with the employer; no guarantees anywhere.",
+ "lines": [
+  {
+   "id": "L01",
+   "scene": "hook",
+   "budget": 3.2,
+   "te": "[season|ప్లేస్‌మెంట్ సీజన్]. [resume|రెజ్యూమ్], [skills|స్కిల్స్], [mock|మాక్ ఇంటర్వ్యూలు], [deadlines|డెడ్‌లైన్స్],",
+   "gloss": "Placement season. Resume, skills, mock interviews, deadlines..."
+  },
+  {
+   "id": "L02",
+   "scene": "hook",
+   "budget": 2.0,
+   "te": "[stop|ముందు] ఏం చేయాలో అర్థం కావట్లేదు.",
+   "gloss": "...no idea what to do first."
+  },
+  {
+   "id": "L03",
+   "scene": "reveal",
+   "budget": 1.4,
+   "te": "అందుకే, [logo|ఎక్స్‌ప్లోర్‌ప్రో].",
+   "gloss": "That's why: XplorePro."
+  },
+  {
+   "id": "L04",
+   "scene": "eco",
+   "budget": 4.0,
+   "te": "[students|స్టూడెంట్స్], [colleges|కాలేజీలు], [corporates|కంపెనీలు], అందరినీ కలిపే ఒకే [ai|ఏఐ] కెరీర్ ప్లాట్‌ఫామ్.",
+   "gloss": "Students, colleges, companies: one AI career platform that brings them all together."
+  },
+  {
+   "id": "L05",
+   "scene": "eco",
+   "budget": 2.6,
+   "te": "[million|పది లక్షలకు] పైగా స్టూడెంట్స్, [countries|ఆరు దేశాల్లో].",
+   "gloss": "Over a million (ten lakh) students, across six countries."
+  },
+  {
+   "id": "L06",
+   "scene": "mentor",
+   "budget": 3.3,
+   "te": "మీ [mentor|ఏఐ కెరీర్ మెంటర్] మీ [resume|రెజ్యూమ్], [linkedin|లింక్డ్‌ఇన్], [github|గిట్‌హబ్] చూసి,",
+   "gloss": "Your AI career mentor looks at your resume, LinkedIn and GitHub,"
+  },
+  {
+   "id": "L07",
+   "scene": "mentor",
+   "budget": 3.0,
+   "te": "[week|ఒక వారం జర్నీలో], మీకంటూ [roadmap|పర్సనల్ రోడ్‌మ్యాప్] ఇస్తుంది.",
+   "gloss": "and over a one-week journey gives you a personal roadmap of your own."
+  },
+  {
+   "id": "L08",
+   "scene": "readiness",
+   "budget": 3.6,
+   "te": "{మీరు} ముందుకెళ్లే కొద్దీ మారే [one|ఒకే నంబర్], మీ [score|ప్లేస్‌మెంట్ రెడీనెస్ స్కోర్].",
+   "gloss": "One number that moves as you progress: your Placement Readiness Score."
+  },
+  {
+   "id": "L09",
+   "scene": "readiness",
+   "budget": 2.2,
+   "te": "[ats|ఏటీఎస్]‌కి తగ్గట్టు {మీ} [resume|రెజ్యూమ్] సరిచేసుకోండి.",
+   "gloss": "Fix your resume to suit ATS."
+  },
+  {
+   "id": "L10",
+   "scene": "readiness",
+   "budget": 3.4,
+   "te": "[hr|హెచ్‌ఆర్], [technical|టెక్నికల్], [coding|కోడింగ్] రౌండ్స్‌లో [interview|ఇంటర్వ్యూలు] ప్రాక్టీస్ చేయండి.",
+   "gloss": "Practise interviews across HR, technical and coding rounds."
+  },
+  {
+   "id": "L11",
+   "scene": "colleges",
+   "budget": 2.3,
+   "te": "[colleges|కాలేజీలకు], [proctored|ఏఐ ప్రాక్టర్డ్] [assessments|అసెస్‌మెంట్స్].",
+   "gloss": "For colleges: AI-proctored assessments."
+  },
+  {
+   "id": "L12",
+   "scene": "colleges",
+   "budget": 3.0,
+   "te": "[flag|ఫ్లాగ్] అంటే [verdict|తీర్పు] కాదు, ఒక [human|మనిషి] రివ్యూ చేసే [evidence|ఎవిడెన్స్].",
+   "gloss": "A flag is not a verdict; it is evidence that a person reviews."
+  },
+  {
+   "id": "L13",
+   "scene": "colleges",
+   "budget": 2.2,
+   "te": "మొత్తం [batch|బ్యాచ్] రెడీనెస్, ఒకే [dashboard|డాష్‌బోర్డ్‌లో].",
+   "gloss": "The whole batch's readiness, on one dashboard."
+  },
+  {
+   "id": "L14",
+   "scene": "corporates",
+   "budget": 3.2,
+   "te": "[corporates|కంపెనీలకు], [source|సోర్స్] నుంచి [deploy|డిప్లాయ్] వరకు, [preassessed|ప్రీ అసెస్డ్] టాలెంట్.",
+   "gloss": "For companies: pre-assessed talent, from source to deploy."
+  },
+  {
+   "id": "L15",
+   "scene": "corporates",
+   "budget": 1.7,
+   "te": "[decision|హైరింగ్ డెసిషన్] మాత్రం మీదే.",
+   "gloss": "But the hiring decision is yours."
+  },
+  {
+   "id": "L16",
+   "scene": "converge",
+   "budget": 3.0,
+   "te": "[training|ట్రైనింగ్]. [assessments|అసెస్‌మెంట్స్]. [mentorship|ఏఐ కెరీర్ మెంటర్‌షిప్].",
+   "gloss": "Training. Assessments. AI career mentorship."
+  },
+  {
+   "id": "L17",
+   "scene": "cta",
+   "budget": 3.2,
+   "te": "ఈరోజే [demo|డెమో] [book|బుక్] చేసుకోండి. [url|ఎక్స్‌ప్లోర్‌ప్రో డాట్ ఏఐ].",
+   "gloss": "Book a demo today. xplorepro dot ai."
+  }
+ ]
 }

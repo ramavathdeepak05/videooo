@@ -105,9 +105,15 @@ function motionN(t) {
   const [a, b] = shotBounds(t), dt = .5 / FPS, t0 = Math.max(a, t - dt), t1 = Math.min(b, t + dt);
   compose(t0, SMALL.ctx, 1 / 8); const d0 = SMALL.ctx.getImageData(0, 0, 240, 135).data.slice();
   compose(t1, SMALL.ctx, 1 / 8); const d1 = SMALL.ctx.getImageData(0, 0, 240, 135).data;
-  let sum = 0; for (let i = 0; i < d1.length; i += 4) sum += Math.abs(d1[i] - d0[i]) + Math.abs(d1[i + 1] - d0[i + 1]) + Math.abs(d1[i + 2] - d0[i + 2]);
+  // motion = the fastest 8x8 block (not the frame mean), so small fast objects on a still frame still get enough samples
+  const BX = 30, BY = 17, blk = new Float32Array(BX * BY); let sum = 0;
+  for (let y = 0; y < 135; y++) for (let x = 0; x < 240; x++) {
+    const i = (y * 240 + x) * 4, dd = Math.abs(d1[i] - d0[i]) + Math.abs(d1[i + 1] - d0[i + 1]) + Math.abs(d1[i + 2] - d0[i + 2]);
+    sum += dd; blk[(y >> 3) * BX + (x >> 3)] += dd;
+  }
+  let bmax = 0; for (let k = 0; k < blk.length; k++) bmax = Math.max(bmax, blk[k] / (64 * 3));
   const m = sum / (240 * 135 * 3);
-  let n = m < .25 ? 1 : m < 1.2 ? 3 : m < 4 ? 6 : 10;
+  let n = bmax < 1.5 && m < .2 ? 1 : bmax < 8 ? 6 : bmax < 24 ? 10 : 16;
   const c = (TLN.cuts || []).find(c => Math.abs(t - c.at) < .2); if (c && n < 3) n = 3;
   return n;
 }

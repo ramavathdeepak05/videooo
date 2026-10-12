@@ -39,7 +39,7 @@ SC.cta = {
     st.pl = 960 - PW / 2; st.pr = 960 + PW / 2; st.lx = st.pl + CTA.PAD + lw / 2; st.dx = st.pr - 14 - CTA.DISC_R;
     const G = convLockGeo(960, CTA.UP_Y, CTA.UP_HW); st.ftip = convTip(G.mx, G.my, G.mh);
     cue(s, .04, 'swish', .28, { x: 960 }); cue(s, st.tLine, 'whoosh', .3, { x: 620 });
-    cue(s, st.tD - .04, 'pop', .45, { x: 960 }); cue(s, st.tB, 'click', .7, { x: 1030 }); cue(s, st.tU, 'tick', .3, { x: 960 });
+    cue(s, st.tD - .04, 'pop', .45, { x: 960 }); cue(s, st.tB, 'click', .3, { x: 1030 }); cue(s, st.tU, 'tick', .3, { x: 960 });
     cue(s, st.tSh, 'shine', .3, { x: 1000 });
     return st;
   },
@@ -49,7 +49,7 @@ SC.cta = {
       contours: { alpha: lerp(.1, .42, q) * (1 - .25 * e), col: mixHex(CTA.FIELD_D, CTA.FIELD_L, q) } };
   },
   draw(lt, st) {
-    const A = 1 - eio(seg(lt, st.len - .6, .6)); if (A <= .002) return;
+    const A = 1;                                       // the end card holds on the final frame (players freeze on it)
     const light = ctaLight(lt), G = ctaPose(lt), PY = CTA.PILL_Y, Lb = st.pr - st.pl;
     const zg = CONV.END_Z + .025 * smooth(0, st.len, lt), dr = 6 * smooth(0, st.len, lt);
     g.save(); g.globalAlpha *= A; g.translate(960, 540); g.scale(zg, zg); g.translate(-960, -540 - dr);
@@ -100,7 +100,7 @@ SC.cta = {
     // cursor: glides in on a bezier, presses on 'book', drifts off
     const c0 = st.tB - .62, cu = brand(seg(lt, c0, .58)), ca = smooth(c0, c0 + .14, lt) * (1 - smooth(st.tU - .25, st.tU + .35, lt));
     if (ca > .01) {
-      const P0 = [1640, 1030], C = [1440, 760], P1 = [st.lx + 70, PY + 18], d2 = eio(seg(lt, st.tB + .3, 1.1));
+      const P0 = [1640, 1030], C = [1440, 760], P1 = [st.pr - 34, PY + 14], d2 = eio(seg(lt, st.tB + .3, 1.1));
       const x = lerp(lerp(P0[0], C[0], cu), lerp(C[0], P1[0], cu), cu) + 34 * d2, y = lerp(lerp(P0[1], C[1], cu), lerp(C[1], P1[1], cu), cu) + 40 * d2;
       ctaCursor(x, y, 1 - .1 * pr, ca);
     }

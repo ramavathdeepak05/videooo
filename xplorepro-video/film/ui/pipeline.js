@@ -76,7 +76,7 @@ function pipeTick(x, y, s, p) {
   tf(x, y, s * p, 0, () => {
     softShadow(-14, -14, 28, 28, 14, { blur: 10, dy: 3, alpha: .2 });
     circle(0, 0, 14, COL.paper);
-    circle(0, 0, 11.5, COL.verified);
+    circle(0, 0, 11.5, COL.violet);              // deploy marker: violet (green is reserved for verification)
     icon('check', 0, .5, 14, '#fff', 3);
   }, clamp(p * 2));
 }

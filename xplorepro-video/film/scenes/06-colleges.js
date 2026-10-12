@@ -54,7 +54,7 @@ const cgEase = u => .5 * eio(u) + .5 * (1 - (1 - clamp(u)) * (1 - clamp(u)));
 /* particle paths (null outside their flight) */
 function cgPA(q, t) { const u = (t - q.t0) / q.d; return u < 0 || u >= 1 ? null : cgQ(q.s, q.c, q.e, cgEase(u)); }
 function cgPB(q, t) { const u = (t - q.t0) / q.d; return u < 0 || u >= 1 ? null : cgC(q.s, q.b, q.c, q.e, cgEase(u)); }
-function cgPD(d, t) { const tau = t - d.tr; return tau < 0 ? null : [d.sx + 2200 * (tau - .3 * (1 - Math.exp(-tau / .3))), lerp(d.sy, CG.LANES[d.i], eo(clamp(tau / .32)))]; }
+function cgPD(d, t) { const tau = t - d.tr; return tau < 0 ? null : [d.sx + 3200 * (tau - .3 * (1 - Math.exp(-tau / .3))), lerp(d.sy, CG.LANES[d.i], eo(clamp(tau / .32)))]; }
 /* reviewer card position (slides in from the right) */
 function cgRevPos(lt, st) { const p = sp(lt, st.tRev, SP.soft); return { x: CG.REV[0] + (1 - p) * 220, y: CG.REV[1], p }; }
 function cgPillX() { return CG.ROWX + INTEG.W / 2 + 70; }
@@ -147,10 +147,10 @@ SC.colleges = {
     const sd = st.scrubD, t0 = st.tScrub;
     st.scrubK = [[t0, 0], [t0 + sd * .3, .4], [t0 + sd * .42, .42], [t0 + sd * .7, .75], [t0 + sd * .82, .77], [t0 + sd, .98]];
     st.tBurst = st.tBat - .05;
-    st.tPlane = st.tBat + .28;
-    st.tRing = st.tBat + .36; st.tBars = st.tBat + .56; st.tTrend = st.tBat + .7; st.tTrain = st.tBat + .82;
-    st.tLabel = st.tBat + .5; st.tDept = st.tBat + .66;
-    st.tDis = s.len - .8;
+    st.tPlane = st.tBat + .12;
+    st.tRing = st.tBat + .2; st.tBars = st.tBat + .3; st.tTrend = st.tBat + .4; st.tTrain = st.tBat + .5;
+    st.tLabel = st.tBat + .3; st.tDept = st.tBat + .4;
+    st.tDis = s.len - .5;                                // finished dashboard holds ~0.9s before the hand-off
     // continuity with the previous scene: its local clock (for the card's live parts) and its contour phase
     const prev = SCN[s.i - 1];
     st.prevLen = prev ? prev.len : 0; st.phase0 = 0;
@@ -199,7 +199,7 @@ SC.colleges = {
       for (let k = 0; k < 2; k++) {
         const tg = dst[(i * 2 + k) % dst.length], a = R() * TAU, bd = 120 + R() * 160, b0 = [s0[0] + Math.cos(a) * bd, s0[1] + Math.sin(a) * bd - 40];
         const c0 = [tg[0] + (R() - .5) * 260, tg[1] - 120 - R() * 160];
-        st.pb.push({ s: s0, b: b0, c: c0, e: tg, t0: st.tBurst + clamp((s0[0] - 150) / 1750) * .14 + R() * .03, d: .72 + R() * .12, r: 6 + R() * 3, col: R() < .72 ? COL.violet : COL.lilac });
+        st.pb.push({ s: s0, b: b0, c: c0, e: tg, t0: st.tBurst + clamp((s0[0] - 150) / 1750) * .14 + R() * .03, d: .5 + R() * .1, r: 6 + R() * 3, col: R() < .72 ? COL.violet : COL.lilac });
       }
     });
     // end: bars peel into dots that stream right in five lanes
@@ -227,10 +227,10 @@ SC.colleges = {
     cue(s, st.tScrub + st.scrubD * .32, 'tick', .26, { x: 1560 });
     cue(s, st.tScrub + st.scrubD * .72, 'tick', .26, { x: 1680 });
     cue(s, st.tBurst, 'reverse', .3, { x: 960 });
-    cue(s, st.tPlane + .2, 'thump', .3, { x: 960 });
+    cue(s, st.tPlane + .2, 'thump', .3, { x: 960, pitch: 2 });
     cue(s, st.tRing, 'roll', .34, { x: 540 });
     cue(s, st.tDash, 'shine', .26, { x: 1300 });
-    cue(s, st.tDis, 'whoosh', .42, { x: 1400 });
+    cue(s, st.tDis, 'whoosh', .28, { x: 1400 });
     return st;
   },
 
@@ -335,9 +335,9 @@ SC.colleges = {
     const pp = sp(lt, st.tPlane - .12, { dur: 1.05, bounce: 0 });
     if (pp > .002) {
       const fade = 1 - smooth(st.tDis + .05, st.tDis + .42, lt);
-      const v = 68 * eo(seg(lt, st.tRing + .05, .95)), cut = COHORT.VALS.map((_, i) => clamp((lt - st.tDis - i * .04 + .03) / st.cutDur[i]));
+      const v = 68 * eo(seg(lt, st.tRing + .05, .7)), cut = COHORT.VALS.map((_, i) => clamp((lt - st.tDis - i * .04 + .03) / st.cutDur[i]));
       const opt = { plane: sp(lt, st.tPlane + .05, SP.soft), ring: seg(lt, st.tRing - .1, .6), v, num: v, tLabel: st.tLabel, tDept: st.tDept,
-        bars: COHORT.VALS.map((_, i) => sp(lt, st.tBars + i * .06, { dur: .7, bounce: .14 })), cut, trend: brand(seg(lt, st.tTrend, 1.0)),
+        bars: COHORT.VALS.map((_, i) => sp(lt, st.tBars + i * .06, { dur: .7, bounce: .14 })), cut, trend: brand(seg(lt, st.tTrend, .7)),
         train: sp(lt, st.tTrain, { dur: 1.1, bounce: 0 }), content: fade };
       const [dx, dy] = CG.DASH, rx = .5 * (1 - pp), ry = -.12 * (1 - pp), yo = 36 * (1 - pp);
       softShadow(dx - COHORT.W / 2, dy - COHORT.H / 2 + yo, COHORT.W, COHORT.H, 32, { blur: 60, dy: 22, alpha: .15 * clamp(pp * 1.5) * fade });

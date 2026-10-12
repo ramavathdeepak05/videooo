@@ -46,16 +46,16 @@ VERBOSE = False
 MIX = dict(
     music=.78, fx=1.0, vox=1.0,                               # bus faders (linear)
     hall_ret=.30, intro_hall_ret=.34, room_ret=.22, fxhall_ret=.20,
-    duck_mid_db=-11.0, duck_low_db=-6.0, duck_high_db=-4.0, duck_fx_mid_db=-3.0,
-    duck_lo=-45.0, duck_hi=-30.0, duck_look=.015, duck_att=.030, duck_rel=.400, duck_hold=.120,
+    duck_mid_db=-12.0, duck_low_db=-6.0, duck_high_db=-7.0, duck_fx_mid_db=-3.0,
+    duck_lo=-45.0, duck_hi=-30.0, duck_look=.015, duck_att=.030, duck_rel=.550, duck_hold=.350,
     glue_ratio=2.0, glue_knee=6.0, glue_att=.020, glue_rel=.250, glue_max_gr=3.0,
-    vo_rms_db=-17.0, air_db=-15.0, deess_max_db=4.0,
-    lufs=-16.0, ceiling_db=-1.5, tp_max_db=-1.2,
+    vo_rms_db=-17.0, air_db=-15.0, deess_max_db=6.0,
+    lufs=-14.0, ceiling_db=-1.5, tp_max_db=-1.2,
     cut_swish_gain=.22, cut_clear=.15, merge_win=.06, cap_per_s=4,
 )
 # instrument levels into their buses (linear)
 LV = dict(kick=.80, heart=.85, clock=.15, hat=.085, ohat=.06, shaker=.065, clap=.26, snare=.40,
-          sub=.42, midbass=.20, pad=.26, intro_pad=.30, pluck=.17, keys=.15, stab=.12, pulse=.11,
+          sub=.42, midbass=.20, pad=.26, intro_pad=.30, pluck=.17, keys=.15, stab=.07, pulse=.11,
           bell=.24, hit=.42, subdrop=.62, riser=.32, swell=.50, bed=.035, tension=.05, air=.05)
 
 # close-voiced pads (MIDI) + sub root (MIDI). Voice leading moves at most two voices per change.
@@ -296,7 +296,7 @@ def glue(music):
     return music * g[:, None], float(gr.max())
 
 
-def soft_clip(x, knee_db=-3.0):
+def soft_clip(x, knee_db=-1.0):
     k = float(undb(knee_db))
     a = np.abs(x)
     return np.sign(x) * np.where(a <= k, a, k + (1 - k) * np.tanh((a - k) / (1 - k)))
@@ -716,14 +716,14 @@ def compose(tl, S, cues, NT, meta):
         swl, pd = reverse_swell(ss[:SR].mean(1), HALL, .7)
         B['sfxm'].add(swl, DROP - .015 + pd - len(swl) / SR - pd, LV['swell'])
         ev.append(dict(what='reverse swell into DROP', t=round(DROP - .015 - len(swl) / SR, 3), end=round(DROP - .015, 3)))
-    bells(LOGO)
+    bells(LOGO + .75, gain=.8)                                  # after the spoken brand name, not on it
     for i, (tb, k) in enumerate(tl.grid(DROP + bar, GROOVE, 2)):
         m = sorted(CH['Bm'][0])[i % 4] + 12
         B['pluck'].add(S.pluck(m, .4, i % 3), tb, LV['pluck'] * (.6 + .1 * i), .3 * math.sin(k * .7))
         B['send_hall'].add(S.pluck(m, .4, i % 3), tb, LV['pluck'] * .2)
 
     # ---------------- pads through the rest of the film (bus LP + LFO applied in finalize)
-    pad_gain = dict(drop=.7, groove=1.0, break_=.95, regroove=1.0, build=1.05, lockup=.8, cta=1.0)
+    pad_gain = dict(drop=.7, groove=1.0, break_=.95, regroove=1.0, build=1.05, lockup=.8, cta=.7)
     t_pad0 = DROP + .25
     for a, b, c in harmony_segments(tl, t_pad0, END):
         nm = tl.section_at((a + b) / 2)['name']
@@ -765,7 +765,7 @@ def compose(tl, S, cues, NT, meta):
                 vel = (.95 if p % 4 == 0 else .72) * hum
                 if late:
                     vel *= .7 + .5 * (tb - t0) / max(LOCKUP - t0, .1)
-                pl = S.pluck(m, .4 + .15 * min(lvl, 2), k % 3)
+                pl = S.pluck(m, .35, k % 3)
                 B['pluck'].add(pl, tb + swing * .5, LV['pluck'] * vel, .35 * math.sin(k * .7))
                 B['send_hall'].add(pl, tb + swing * .5, LV['pluck'] * vel * .22)
             if lvl >= 1 and not (late and tb >= LOCKUP - .5):
@@ -853,11 +853,11 @@ def compose(tl, S, cues, NT, meta):
         tb2 = min(END, CTA + bar)
         for m in CH['Gmaj9'][0]:
             B['keys'].add(S.fmkey(m + 12, bar * .95, .5, rel=.6), CTA, LV['keys'] * .55)
-        B['bass'].add(S.sub(31, tb2 - CTA), CTA, LV['sub'] * .75)
+        B['bass'].add(S.sub(31, tb2 - CTA), CTA, LV['sub'] * .5)
         if END > tb2:
             for m in CH['Dadd9'][0]:
                 B['keys'].add(S.fmkey(m + 12, END - tb2, .45, rel=.6), tb2, LV['keys'] * .5)
-            B['bass'].add(S.sub(38, END - tb2), tb2, LV['sub'] * .7)
+            B['bass'].add(S.sub(38, min(END - tb2, max(.5, END - 2.0 - tb2))), tb2, LV['sub'] * .35)
         t, i = CTA, 0
         while t < END - 2.0:
             notes = CH[chord_at(tl, t)][0]
@@ -867,7 +867,8 @@ def compose(tl, S, cues, NT, meta):
             B['send_hall'].add(S.pluck(m, .35, i % 3), t, LV['pluck'] * .3 * (1 - .7 * u))
             t += beat if t < CTA + bar else (2 * beat if t < CTA + 2 * bar else 4 * beat)
             i += 1
-        bells(CTA, gain=float(undb(-6)), spacing=.22, under=74)
+        vo_end = max([float(v['start']) + float(v.get('dur') or 0) for sc in tl.scenes for v in (sc.get('vo') or [])] or [CTA])
+        bells(max(CTA + 1.0, vo_end + .3), gain=float(undb(-9)), spacing=.22, under=74)   # end button after the last word
     return B, kicks, stopinfo
 
 
@@ -887,17 +888,17 @@ def pad_cutoff(tl, n):
             for c in tl.cuts:
                 if c > GROOVE + 1e-6:
                     lv += seg_t >= c - 1e-6
-            base[i0:i1] = np.array([1400.0, 1900.0, 2500.0])[np.minimum(lv, 2).astype(int)]
+            base[i0:i1] = np.array([1400.0, 1700.0, 2000.0])[np.minimum(lv, 2).astype(int)]
         elif nm == 'break':
             base[i0:i1] = 1200.0
         elif nm == 'regroove':
-            base[i0:i1] = 3000.0
+            base[i0:i1] = 2200.0
         elif nm == 'build':
             base[i0:i1] = 1800.0 * (5000.0 / 1800.0) ** np.linspace(0, 1, i1 - i0)
         elif nm == 'lockup':
             base[i0:i1] = 4000.0
         elif nm == 'cta':
-            base[i0:i1] = 2200.0
+            base[i0:i1] = 1600.0
     base[int(tl.dur * SR):] = base[int(tl.dur * SR) - 1] if int(tl.dur * SR) - 1 < n else base[-1]
     base = np.exp(uniform_filter1d(np.log(base), int(.3 * SR), mode='nearest'))
     return base * 2.0 ** (.4 * np.sin(TAU * .08 * t))
@@ -983,7 +984,7 @@ def finalize_music(tl, B, kicks, stopinfo, N):
         intro[i + nf:] = 0
         music += intro
     music = music[:N]
-    fo = min(N, int(2.5 * SR))
+    fo = min(N, int(1.6 * SR))
     music[N - fo:] *= (np.cos(np.linspace(0, np.pi / 2, fo)))[:, None]   # equal-power style fade
     return music * MIX['music']
 
@@ -1138,6 +1139,11 @@ def process_vo(path, air=True):
     for kind, f, q, gdb in (('peak', 280, 1.0, -1.5), ('peak', 3200, .8, 2.0)):
         b, aa = rbj(kind, f, q, SR, gdb)
         a = lfilter(b, aa, a)
+    # presence match: TTS lines differ ~13 dB in 1-4 kHz tilt; pull every line to the same consonant presence
+    fl = int(.02 * SR); fr = a[:len(a) // fl * fl].reshape(-1, fl); er = np.sqrt((fr ** 2).mean(1)); vm = er > .1 * er.max()
+    bd = sosfilt(sos('band', [1000, 4000], 4), a)[:len(a) // fl * fl].reshape(-1, fl)
+    ratio = 10 * np.log10((bd[vm] ** 2).sum() / max(1e-12, (fr[vm] ** 2).sum()))
+    pg = float(np.clip(-13.5 - ratio, -3.0, 6.0)); b, aa = rbj('peak', 2800, .7, SR, pg); a = lfilter(b, aa, a)
     a = a * float(undb(-20.0 - speech_rms_db(a)))                   # normalise first so thresholds mean the same per line
     a, g, ds_max, ds_frac = deess(a)
     if air:

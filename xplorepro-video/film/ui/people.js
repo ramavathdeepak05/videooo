@@ -1,5 +1,5 @@
 /* ui/people.js: flat 2.5D people (refined from the 50s cut): brand-accent palettes, two-tone shading, blinks, breathing.
-   person(x, y, s, o) origin = chest centre. o: {pal (index or object), lt, seed, shrug 0..1, look -1..1, mood:'calm'|'focus'|'worried', rot,
+   person(x, y, s, o) origin = chest centre. o: {pal (index or object), lt, seed, shrug 0..1, look -1..1, mood:'calm'|'focus', rot,
                                                style: 'side'|'long'|'crop'|'bun'|'bob'|'curly' (default from the palette)}
    bust(x, y, r, pal, bg, lt, o) person clipped into a circle; o (optional) = person options plus {dy} (vertical offset inside the clip).
    Extents are unchanged from v1 (head r55 at y-66, body to y+190, shoulders +-104). No face overlays / emotion meters. */
@@ -65,13 +65,12 @@ function person(x, y, s, o = {}) {
     peopleHairFront(style, P.hair);
     // brows (expression via pose only), eyes with deterministic blinks, mouth
     const bl = ((lt * .37 + seed * .13) % 1) < .035 ? .15 : 1, ex = look * 6;
-    const browIn = o.mood === 'worried' ? -7 : o.mood === 'focus' ? 1 : -2;
+    const browIn = o.mood === 'focus' ? 1 : -2;
     g.strokeStyle = shadeHex(P.hair, 1.1); g.lineWidth = 4; g.lineCap = 'round';
     for (const d of [-1, 1]) { g.beginPath(); g.moveTo(d * 27 + ex * .6, -78); g.lineTo(d * 12 + ex * .6, -78 + browIn); g.stroke(); }
     for (const d of [-1, 1]) { g.save(); g.translate(d * 19 + ex, -62); g.scale(1, bl); circle(0, 0, 5.5, '#1E1712'); g.restore(); }
     g.beginPath();
-    if (o.mood === 'worried') { g.moveTo(-12, -34); g.quadraticCurveTo(0, -40, 12, -34); }
-    else if (o.mood === 'focus') { g.moveTo(-10, -36); g.lineTo(10, -36); }
+    if (o.mood === 'focus') { g.moveTo(-10, -36); g.lineTo(10, -36); }
     else { g.moveTo(-14, -38); g.quadraticCurveTo(0, -27, 14, -38); }
     g.strokeStyle = '#1E1712'; g.lineWidth = 4.5; g.lineCap = 'round'; g.stroke();
   });

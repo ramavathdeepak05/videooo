@@ -26,8 +26,8 @@ const RD = {
 };
 const RD_NOB = { dur: 1.05, bounce: 0 }, RD_FLOW = { dur: .85, bounce: 0 };
 /* needle value (springy) and odometer value (no overshoot) */
-function rdVal(lt, st) { return 42 * sp(lt, .28, { dur: 1.05, bounce: .12 }) + 16 * sp(lt, st.tScore, SP.needle) + 6 * sp(lt, st.tH1, SP.needle) + 8 * sp(lt, st.tH2, SP.needle); }
-function rdNum(lt, st) { return 42 * sp(lt, .28, RD_NOB) + 16 * sp(lt, st.tScore + .02, RD_FLOW) + 6 * sp(lt, st.tH1 + .02, RD_FLOW) + 8 * sp(lt, st.tH2 + .02, RD_FLOW); }
+function rdVal(lt, st) { return 42 * sp(lt, .28, { dur: 1.05, bounce: .12 }) + 16 * sp(lt, st.tScore - .3, { dur: .6, bounce: .1 }) + 6 * sp(lt, st.tH1, SP.needle) + 8 * sp(lt, st.tH2, SP.needle); }
+function rdNum(lt, st) { return 42 * sp(lt, .28, RD_NOB) + 16 * sp(lt, st.tScore - .28, { dur: .6, bounce: 0 }) + 6 * sp(lt, st.tH1 + .02, RD_FLOW) + 8 * sp(lt, st.tH2 + .02, RD_FLOW); }
 /* whip-pan curve: smootherstep (peak speed 1.9x mean, vs 3x for eio) so the forced multi-sample blur reads as a smear, not copies */
 function rdWhip(lt, st) { const u = seg(lt, st.tWhip, RD.WD); return RD.WHIP * u * u * u * (u * (u * 6 - 15) + 10); }
 /* camera: exact (600,500,1) at lt 0; glide right to frame gauge + heatmap, re-frame for the resume, whip, make room for feedback */
@@ -43,15 +43,15 @@ SC.readiness = {
     const st = { len: s.len, tOne: at(s, 'one'), tScore: at(s, 'score'), tAts: at(s, 'ats'), tRes: at(s, 'resume'),
       tHr: at(s, 'hr'), tTech: at(s, 'technical'), tCode: at(s, 'coding'), tInt: at(s, 'interview') };
     st.tWhip = st.tHr - .4;
-    st.tDock = st.tAts - .32;
-    st.tFlip = st.tAts - .3; st.tBack = st.tFlip + .38;
+    st.tDock = st.tAts - .18;
+    st.tFlip = st.tAts - .16; st.tBack = st.tFlip + .38;
     st.tResIn = Math.max(st.tAts + .02, st.tRes - .95);
     st.tScan = st.tRes - .06;
     st.ticks = [st.tScan + .2, st.tScan + .37, st.tScan + .54];
     st.tRoll = st.tScan + .12;
     st.tFly = Math.min(st.ticks[2] + .1, st.tWhip - .3); st.tH1 = st.tFly + .42;
-    st.tPanel = st.tInt - .22; st.tH2 = st.tInt + .62;
-    st.tE = Math.max(s.len - .78, Math.min(st.tInt + 1.2, s.len - .55));     // keep >= ~1.2s of feedback if the VO runs late
+    st.tPanel = Math.min(st.tInt - .22, st.tCode + .15); st.tH2 = st.tInt + .62;
+    st.tE = s.len - .55;                                                    // feedback panel holds still before the shrink
     st.mT0 = .62; st.gapT = Math.min(st.mT0 + .7, st.tOne - .45);
     st.camK = [
       { t: 0, x: RD.G1[0], y: RD.G1[1], z: 1 },
@@ -78,12 +78,12 @@ SC.readiness = {
     cue(s, st.tResIn, 'slide', .35, { x: 800 });
     cue(s, st.tScan - .16, 'scan', .4, { x: 800 });
     st.ticks.forEach(t => cue(s, t, 'tick', .36, { x: 1450 }));
-    cue(s, st.tWhip, 'whoosh', .75, { x: 1300 });
+    cue(s, st.tWhip, 'whoosh', .38, { x: 1300 });
     cue(s, st.tHr + .08, 'click', .3, { x: 760 }); cue(s, st.tTech, 'click', .3, { x: 940 }); cue(s, st.tCode, 'click', .3, { x: 1100 });
     cue(s, st.tCode + .1, 'type', .3, { x: 960 });
     cue(s, st.tPanel, 'slide', .35, { x: 1450 }); cue(s, st.tInt + .12, 'roll', .3, { x: 1450 });
     cue(s, st.tH2, 'servo', .3, { x: 160 }); cue(s, st.tH2 + .04, 'pop', .3, { x: 330 });
-    cue(s, st.tE, 'suck', .4, { x: 960 });
+    cue(s, st.tE, 'suck', .22, { x: 960 });
     return st;
   },
 
@@ -180,7 +180,7 @@ SC.readiness = {
         delta: { txt: '+16', p: sp(lt, st.tScore + .5, SP.ui) * (1 - sp(lt, st.tDock - .2, { dur: .35, bounce: 0 })) },
         shadow: smooth(0, .7, lt), alpha: 1 - hOut });
       // label under the gauge (out as it docks)
-      tf(gx, gy + 322 * gs, gs, 0, () => typeRise('Placement Readiness Score', 0, 0, lt, st.tScore - .25, { size: 38, col: COL.ink, out: st.tDock - .12 }));
+      tf(gx, gy + 322 * gs, gs, 0, () => typeRise('Placement Readiness Score', 0, 0, lt, st.tScore - .25, { size: 38, col: COL.ink, out: st.tDock - .05 }));
       // HUD delta chips
       const c1 = sp(lt, st.tH1 + .02, SP.ui) * (1 - sp(lt, Math.min(st.tH1 + 1.6, st.tH2 - .25), { dur: .35, bounce: 0 }));
       const c2 = sp(lt, st.tH2 + .02, SP.ui) * (1 - hOut);
