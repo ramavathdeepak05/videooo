@@ -80,7 +80,7 @@ function typeRise(str, x, y, lt, t0, o = {}) {
   g.restore();
 }
 /* small eyebrow label: uppercase Inter with tracking */
-function eyebrow(str, x, y, lt, t0, o = {}) { typeRise(str.toUpperCase(), x, y, lt, t0, { size: 24, weight: 600, face: 'I', ls: 3, col: COL.violet, ...o }); }
+function eyebrow(str, x, y, lt, t0, o = {}) { typeRise(str.toUpperCase(), x, y, lt, t0, { size: 26, weight: 600, face: 'I', ls: 3, col: COL.violet, ...o }); }
 
 /* ---------- icons (lucide-static, recoloured; resolution buckets so push-ins stay sharp) ---------- */
 const iconCache = {}, pending = [];
@@ -175,7 +175,7 @@ function vectorMark(x, y, h, o = {}) {
     if (nd > 0) {
       // needle draws outward from the pivot dot along its axis
       const [ax, ay] = MARK.needleL[0], [bx, by] = MARK.needleL[2], ang = Math.atan2(by - ay, bx - ax), half = Math.hypot(bx - ax, by - ay) / 2 + 10;
-      g.save(); g.translate(MARK.dot[0] - MARK.cx, MARK.dot[1] - MARK.cy); g.rotate(ang); g.beginPath(); g.rect(-half * nd - 30, -400, (half * nd + 30) * 2, 800); g.rotate(-ang); g.translate(-(MARK.dot[0] - MARK.cx), -(MARK.dot[1] - MARK.cy)); g.clip();
+      g.save(); g.translate(MARK.dot[0] - MARK.cx, MARK.dot[1] - MARK.cy); g.rotate(ang); g.beginPath(); g.rect(-half * nd - 30 * nd, -400, (half * nd + 30 * nd) * 2, 800); g.rotate(-ang); g.translate(-(MARK.dot[0] - MARK.cx), -(MARK.dot[1] - MARK.cy)); g.clip();
       poly(MARK.needleR); g.fillStyle = C.nr; g.fill();
       poly(MARK.needleL); g.fillStyle = C.nl; g.fill(); g.strokeStyle = C.edge; g.lineWidth = 5; g.stroke();
       g.restore();

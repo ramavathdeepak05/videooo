@@ -28,7 +28,8 @@ let ACC = null;
 /* ---------- background layer (engine-owned, eased across cuts) ---------- */
 const BG_DEFAULT = { col: '#FBFAF7', glow: null, contours: { alpha: .45 } };
 function bgState(s, lt) {
-  const base = s.bg || {}, dyn = (s.def && s.def.bg) ? (s.def.bg(lt, s.st) || {}) : {};
+  const base = s.bg || {};
+  let dyn = {}; if (s.def && s.def.bg) { try { dyn = s.def.bg(lt, s.st) || {}; } catch (e) { console.error('bg ' + s.id + ': ' + e.message); } }
   return { col: dyn.col || base.col || BG_DEFAULT.col, glow: dyn.glow !== undefined ? dyn.glow : (base.glow || null),
     contours: { ...CONTOUR_DEFAULT, ...(BG_DEFAULT.contours), ...(base.contours || {}), ...(dyn.contours || {}) } };
 }
