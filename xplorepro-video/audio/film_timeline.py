@@ -5,8 +5,9 @@ estimated from character position."""
 import json, math, re, sys, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 story = json.load(open(f'{ROOT}/film/story.json'))
-script = {l['id']: l for l in json.load(open(f'{ROOT}/audio/script_te.json'))['lines']}
-vo_path = f'{ROOT}/audio/vo_te.json'
+arg = lambda k, d: sys.argv[sys.argv.index(k) + 1] if k in sys.argv else d
+script = {l['id']: l for l in json.load(open(os.path.join(ROOT, arg('--script', 'audio/script_te.json'))))['lines']}
+vo_path = os.path.join(ROOT, arg('--vo', 'audio/vo_te.json'))
 real = {} if ('--provisional' in sys.argv or not os.path.exists(vo_path)) else {v['id']: v for v in json.load(open(vo_path))}
 BEAT, D = story['beat'], story['defaults']
 snap = lambda t: math.ceil(t / BEAT - 1e-6) * BEAT
@@ -25,7 +26,7 @@ for sc in story['scenes']:
     start, v = t, t + sc.get('lead', D['lead'])
     vo, anchors = [], {}
     for lid in sc['lines']:
-        L = script[lid]; plain, keys = parse(L['te'])
+        L = script[lid]; plain, keys = parse(L.get('te') or L.get('en'))
         if lid in real: dur, rel, f = real[lid]['dur'], real[lid].get('anchors', {}), real[lid]['file']
         else: dur, rel, f = L['budget'], {}, None
         for k, ci in keys.items():

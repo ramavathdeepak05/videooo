@@ -15,7 +15,7 @@
         "L02"
       ],
       "lead": 0.35,
-      "min": 5.5,
+      "min": 6.5,
       "bg": {
         "col": "#FBFAF7",
         "contours": {
@@ -29,7 +29,7 @@
         "L03"
       ],
       "lead": 0.5,
-      "min": 2.4,
+      "min": 2.5,
       "bg": {
         "col": "#FBFAF7",
         "contours": {
@@ -89,7 +89,8 @@
           "alpha": 0.32,
           "y0": 760
         }
-      }
+      },
+      "min": 10.5
     },
     {
       "id": "colleges",
@@ -111,7 +112,8 @@
           "alpha": 0.3,
           "y0": 820
         }
-      }
+      },
+      "min": 8.5
     },
     {
       "id": "corporates",
@@ -125,14 +127,15 @@
           "alpha": 0.32,
           "y0": 300
         }
-      }
+      },
+      "min": 6.0
     },
     {
       "id": "converge",
       "lines": [
         "L16"
       ],
-      "min": 4.2,
+      "min": 4.5,
       "bg": {
         "col": "#4A22B8",
         "glow": {
@@ -159,7 +162,8 @@
         "contours": {
           "alpha": 0.42
         }
-      }
+      },
+      "min": 5.5
     }
   ],
   "markers": {
