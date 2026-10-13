@@ -4,9 +4,10 @@
 
 | File | What it is |
 |---|---|
-| `xplorepro-motion-video-te-60s.mp4` | **The current cut.** 60s, 1920×1080, 30fps, Telugu female voiceover with music and sound effects. Audio is AAC 48 kHz at −14 LUFS, −1.4 dBTP. |
-| `audio/vo_review.wav` | The Telugu voiceover on its own: all 17 lines with gaps between them, for pronunciation review. |
-| `audio/vo_review_sheet.md` | Each line in Telugu, ISO 15919 romanisation and English gloss, with its duration. |
+| `xplorepro-motion-video-en-60s.mp4` | **English cut.** 60s, 1920×1080, 30fps, English female voiceover (Kokoro `af_heart`) with music and sound effects. AAC 48 kHz, −14 LUFS. |
+| `xplorepro-motion-video-te-60s.mp4` | **Telugu cut.** Same film with a Telugu female voiceover (AI4Bharat Indic-TTS). AAC 48 kHz, −14 LUFS, −1.4 dBTP. |
+| `audio/vo_review_en.wav`, `audio/vo_review_sheet_en.md` | English voiceover on its own (17 lines with gaps) and the line sheet. |
+| `audio/vo_review.wav`, `audio/vo_review_sheet.md` | Telugu voiceover on its own, and each line in Telugu, ISO 15919 romanisation and English gloss. |
 | `out/mix/stem_{vox,music,fx}.wav` | Mix stems. Not committed; `build.sh` regenerates them. |
 | `archive/` | Earlier English cuts (50s and 33s). |
 
@@ -25,8 +26,9 @@ On-screen text is English. The only claims shown are the four scale figures from
 ## Rebuild
 
 ```bash
-./build.sh            # full quality: timeline, lint, cue export, mix, audio QA, PNG frames, encode
-./build.sh --preview  # fast half-res check render (out/preview.mp4)
+./build.sh                 # English cut, full quality: timeline, lint, cue export, mix, audio QA, PNG frames, encode
+LANG_VO=te ./build.sh      # Telugu cut
+./build.sh --preview       # fast half-res check render (out/preview.mp4)
 ```
 
 Steps by hand:
@@ -54,7 +56,8 @@ node film/contact.js --scene mentor --step .4                            # QA co
 
 ### Where to change things
 
-- **Voiceover wording:** edit `audio/script_te.json`. `[key|word]` marks a sync anchor; keep the keys. Spellings of English terms are in `audio/lexicon_te.json`. Then run `vo_te.py --only Lxx`, `film_timeline.py` and the remaining build steps.
+- **English wording:** edit `audio/script_en.json` (same anchor keys and order as Telugu), then `python3 audio/vo_en.py --speed 1.1 [--only Lxx]`. Per-line `speed` fits each scene; TTS-only respellings (résumé, US spellings) are in `TTS_FIX` in `vo_en.py`.
+- **Telugu wording:** edit `audio/script_te.json`. `[key|word]` marks a sync anchor; keep the keys. Spellings of English terms are in `audio/lexicon_te.json`. Then run `vo_te.py --only Lxx`, `film_timeline.py` and the remaining build steps.
 - **Visuals:** edit `film/scenes/NN-*.js`. Scenes are keyed to voiceover anchors (`at(s, 'key')`), never to absolute times. Read the API reference in `film/scenes/_template.js` first.
 - **Scene backgrounds and minimum lengths, music markers:** `film/story.json`.
 

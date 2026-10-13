@@ -17,27 +17,27 @@
     {
      "id": "L01",
      "start": 0.35,
-     "dur": 3.478,
-     "text": "ప్లేస్‌మెంట్ సీజన్. రెజ్యూమ్, స్కిల్స్, మాక్ ఇంటర్వ్యూలు, డెడ్‌లైన్స్,",
-     "file": "audio/vo_te/L01.wav",
+     "dur": 3.658,
+     "text": "Placement season. Resume, skills, mock interviews, deadlines,",
+     "file": "audio/vo_en/L01.wav",
      "provisional": false
     },
     {
      "id": "L02",
-     "start": 3.988,
-     "dur": 2.061,
-     "text": "ముందు ఏం చేయాలో అర్థం కావట్లేదు.",
-     "file": "audio/vo_te/L02.wav",
+     "start": 4.168,
+     "dur": 1.398,
+     "text": "no idea where to start.",
+     "file": "audio/vo_en/L02.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "season": 0.395,
-    "resume": 1.418,
-    "skills": 1.911,
-    "mock": 2.42,
-    "deadlines": 3.245,
-    "stop": 4.028
+    "season": 0.4,
+    "resume": 1.28,
+    "skills": 1.94,
+    "mock": 2.4,
+    "deadlines": 3.28,
+    "stop": 4.218
    }
   },
   {
@@ -56,15 +56,15 @@
    "vo": [
     {
      "id": "L03",
-     "start": 7.0,
-     "dur": 1.502,
-     "text": "అందుకే, ఎక్స్‌ప్లోర్‌ప్రో.",
-     "file": "audio/vo_te/L03.wav",
+     "start": 6.9,
+     "dur": 1.654,
+     "text": "That's why XplorePro exists.",
+     "file": "audio/vo_en/L03.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "logo": 7.609
+    "logo": 7.55
    }
   },
   {
@@ -88,27 +88,27 @@
     {
      "id": "L04",
      "start": 9.25,
-     "dur": 3.917,
-     "text": "స్టూడెంట్స్, కాలేజీలు, కంపెనీలు, అందరినీ కలిపే ఒకే ఏఐ కెరీర్ ప్లాట్‌ఫామ్.",
-     "file": "audio/vo_te/L04.wav",
+     "dur": 4.533,
+     "text": "Students, colleges and companies, connected on one AI career platform.",
+     "file": "audio/vo_en/L04.wav",
      "provisional": false
     },
     {
      "id": "L05",
-     "start": 13.327,
-     "dur": 2.659,
-     "text": "పది లక్షలకు పైగా స్టూడెంట్స్, ఆరు దేశాల్లో.",
-     "file": "audio/vo_te/L05.wav",
+     "start": 13.943,
+     "dur": 2.209,
+     "text": "Over a million students, in six countries.",
+     "file": "audio/vo_en/L05.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "students": 9.29,
-    "colleges": 9.864,
-    "corporates": 10.422,
-    "ai": 11.965,
-    "million": 13.372,
-    "countries": 15.088
+    "students": 9.3,
+    "colleges": 9.9,
+    "corporates": 10.66,
+    "ai": 12.14,
+    "million": 13.993,
+    "countries": 15.493
    }
   },
   {
@@ -126,27 +126,27 @@
     {
      "id": "L06",
      "start": 17.25,
-     "dur": 3.408,
-     "text": "మీ ఏఐ కెరీర్ మెంటర్ మీ రెజ్యూమ్, లింక్డ్‌ఇన్, గిట్‌హబ్ చూసి,",
-     "file": "audio/vo_te/L06.wav",
+     "dur": 3.787,
+     "text": "Your AI career mentor reads your resume, LinkedIn and GitHub,",
+     "file": "audio/vo_en/L06.wav",
      "provisional": false
     },
     {
      "id": "L07",
-     "start": 20.818,
-     "dur": 2.989,
-     "text": "ఒక వారం జర్నీలో, మీకంటూ పర్సనల్ రోడ్‌మ్యాప్ ఇస్తుంది.",
-     "file": "audio/vo_te/L07.wav",
+     "start": 21.197,
+     "dur": 3.019,
+     "text": "then a one-week journey builds your personalised roadmap.",
+     "file": "audio/vo_en/L07.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "mentor": 17.488,
-    "resume": 18.719,
-    "linkedin": 19.206,
-    "github": 19.724,
-    "week": 20.858,
-    "roadmap": 22.38
+    "mentor": 17.66,
+    "resume": 19.12,
+    "linkedin": 19.68,
+    "github": 20.56,
+    "week": 21.807,
+    "roadmap": 22.807
    }
   },
   {
@@ -164,37 +164,37 @@
     {
      "id": "L08",
      "start": 25.25,
-     "dur": 3.478,
-     "text": "మీరు ముందుకెళ్లే కొద్దీ మారే ఒకే నంబర్, మీ ప్లేస్‌మెంట్ రెడీనెస్ స్కోర్.",
-     "file": "audio/vo_te/L08.wav",
+     "dur": 3.295,
+     "text": "One number that tracks your progress. Your Placement Readiness Score.",
+     "file": "audio/vo_en/L08.wav",
      "provisional": false
     },
     {
      "id": "L09",
-     "start": 28.888,
-     "dur": 2.47,
-     "text": "ఏటీఎస్‌కి తగ్గట్టు మీ రెజ్యూమ్ సరిచేసుకోండి.",
-     "file": "audio/vo_te/L09.wav",
+     "start": 28.705,
+     "dur": 2.485,
+     "text": "ATS filters? Fine-tune your resume.",
+     "file": "audio/vo_en/L09.wav",
      "provisional": false
     },
     {
      "id": "L10",
-     "start": 31.518,
-     "dur": 3.488,
-     "text": "హెచ్‌ఆర్, టెక్నికల్, కోడింగ్ రౌండ్స్‌లో ఇంటర్వ్యూలు ప్రాక్టీస్ చేయండి.",
-     "file": "audio/vo_te/L10.wav",
+     "start": 31.35,
+     "dur": 3.786,
+     "text": "Practise HR, technical and coding rounds before the real interview.",
+     "file": "audio/vo_en/L10.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "one": 26.624,
-    "score": 27.494,
-    "ats": 28.928,
-    "resume": 30.119,
-    "hr": 31.563,
-    "technical": 32.102,
-    "coding": 32.645,
-    "interview": 33.458
+    "one": 25.3,
+    "score": 27.44,
+    "ats": 28.755,
+    "resume": 30.695,
+    "hr": 32.0,
+    "technical": 32.3,
+    "coding": 33.06,
+    "interview": 34.6
    }
   },
   {
@@ -219,38 +219,38 @@
     {
      "id": "L11",
      "start": 35.75,
-     "dur": 2.35,
-     "text": "కాలేజీలకు, ఏఐ ప్రాక్టర్డ్ అసెస్‌మెంట్స్.",
-     "file": "audio/vo_te/L11.wav",
+     "dur": 2.445,
+     "text": "For colleges, AI-proctored assessments.",
+     "file": "audio/vo_en/L11.wav",
      "provisional": false
     },
     {
      "id": "L12",
-     "start": 38.26,
-     "dur": 2.979,
-     "text": "ఫ్లాగ్ అంటే తీర్పు కాదు, ఒక మనిషి రివ్యూ చేసే ఎవిడెన్స్.",
-     "file": "audio/vo_te/L12.wav",
+     "start": 38.355,
+     "dur": 2.998,
+     "text": "Flags aren't verdicts. A person reviews the evidence.",
+     "file": "audio/vo_en/L12.wav",
      "provisional": false
     },
     {
      "id": "L13",
-     "start": 41.399,
-     "dur": 2.051,
-     "text": "మొత్తం బ్యాచ్ రెడీనెస్, ఒకే డాష్‌బోర్డ్‌లో.",
-     "file": "audio/vo_te/L13.wav",
+     "start": 41.513,
+     "dur": 2.015,
+     "text": "Track batch readiness on one dashboard.",
+     "file": "audio/vo_en/L13.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "colleges": 35.79,
-    "proctored": 36.545,
-    "assessments": 37.381,
-    "flag": 38.295,
-    "verdict": 38.847,
-    "human": 39.694,
-    "evidence": 40.646,
-    "batch": 41.749,
-    "dashboard": 42.84
+    "colleges": 36.22,
+    "proctored": 36.64,
+    "assessments": 37.64,
+    "flag": 38.405,
+    "verdict": 39.165,
+    "human": 39.905,
+    "evidence": 40.785,
+    "batch": 42.043,
+    "dashboard": 42.963
    }
   },
   {
@@ -268,26 +268,26 @@
     {
      "id": "L14",
      "start": 44.25,
-     "dur": 3.308,
-     "text": "కంపెనీలకు, సోర్స్ నుంచి డిప్లాయ్ వరకు, ప్రీ అసెస్డ్ టాలెంట్.",
-     "file": "audio/vo_te/L14.wav",
+     "dur": 2.934,
+     "text": "For companies, from source to deploy, pre-assessed talent.",
+     "file": "audio/vo_en/L14.wav",
      "provisional": false
     },
     {
      "id": "L15",
-     "start": 47.718,
-     "dur": 1.791,
-     "text": "హైరింగ్ డెసిషన్ మాత్రం మీదే.",
-     "file": "audio/vo_te/L15.wav",
+     "start": 47.344,
+     "dur": 1.953,
+     "text": "But the hiring decision stays yours.",
+     "file": "audio/vo_en/L15.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "corporates": 44.295,
-    "source": 45.005,
-    "deploy": 45.666,
-    "preassessed": 46.42,
-    "decision": 47.758
+    "corporates": 44.72,
+    "source": 45.24,
+    "deploy": 45.78,
+    "preassessed": 46.16,
+    "decision": 47.934
    }
   },
   {
@@ -312,16 +312,16 @@
     {
      "id": "L16",
      "start": 50.25,
-     "dur": 3.049,
-     "text": "ట్రైనింగ్. అసెస్‌మెంట్స్. ఏఐ కెరీర్ మెంటర్‌షిప్.",
-     "file": "audio/vo_te/L16.wav",
+     "dur": 2.89,
+     "text": "Training. Assessments. AI career mentorship.",
+     "file": "audio/vo_en/L16.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "training": 50.295,
-    "assessments": 51.083,
-    "mentorship": 52.046
+    "training": 50.3,
+    "assessments": 50.86,
+    "mentorship": 51.56
    }
   },
   {
@@ -338,28 +338,28 @@
     {
      "id": "L17",
      "start": 54.75,
-     "dur": 3.118,
-     "text": "ఈరోజే డెమో బుక్ చేసుకోండి. ఎక్స్‌ప్లోర్‌ప్రో డాట్ ఏఐ.",
-     "file": "audio/vo_te/L17.wav",
+     "dur": 3.19,
+     "text": "Want a demo? Book yours at XplorePro dot AI.",
+     "file": "audio/vo_en/L17.wav",
      "provisional": false
     }
    ],
    "anchors": {
-    "demo": 55.256,
-    "book": 55.523,
-    "url": 56.606
+    "demo": 55.3,
+    "book": 55.56,
+    "url": 56.3
    }
   }
  ],
  "markers": {
-  "STOP": 4.028,
+  "STOP": 4.218,
   "DROP": 6.5,
-  "LOGO": 7.609,
+  "LOGO": 7.55,
   "GROOVE": 9.0,
   "BREAK": 35.5,
   "REGROOVE": 44.0,
   "BUILD": 49.5,
-  "LOCKUP": 53.496,
+  "LOCKUP": 53.01,
   "CTA": 54.5,
   "END": 60.0
  },
@@ -367,11 +367,11 @@
   {
    "name": "intro",
    "start": 0.0,
-   "end": 4.028
+   "end": 4.218
   },
   {
    "name": "stop",
-   "start": 4.028,
+   "start": 4.218,
    "end": 6.5
   },
   {
@@ -397,11 +397,11 @@
   {
    "name": "build",
    "start": 49.5,
-   "end": 53.496
+   "end": 53.01
   },
   {
    "name": "lockup",
-   "start": 53.496,
+   "start": 53.01,
    "end": 54.5
   },
   {

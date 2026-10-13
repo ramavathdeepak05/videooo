@@ -56,7 +56,7 @@
    "vo": [
     {
      "id": "L03",
-     "start": 7.0,
+     "start": 6.9,
      "dur": 1.502,
      "text": "అందుకే, ఎక్స్‌ప్లోర్‌ప్రో.",
      "file": "audio/vo_te/L03.wav",
@@ -64,7 +64,7 @@
     }
    ],
    "anchors": {
-    "logo": 7.609
+    "logo": 7.509
    }
   },
   {
@@ -354,7 +354,7 @@
  "markers": {
   "STOP": 4.028,
   "DROP": 6.5,
-  "LOGO": 7.609,
+  "LOGO": 7.509,
   "GROOVE": 9.0,
   "BREAK": 35.5,
   "REGROOVE": 44.0,

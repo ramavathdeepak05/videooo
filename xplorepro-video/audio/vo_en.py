@@ -30,7 +30,12 @@ def parse(te):
     return re.sub(r'\s+', ' ', plain).strip(), keys
 
 
+# TTS-only respellings (captions/script keep the house spelling): noun 'résumé' (not the verb), US spellings sound the same
+TTS_FIX = [(r'\b[Rr]esume\b', 'résumé'), (r'\bPractise\b', 'Practice'), (r'\bpersonalised\b', 'personalized'), (r'AI-proctored', 'AI proctored')]
+
+
 def synth(text, speed):
+    for pat, rep in TTS_FIX: text = re.sub(pat, rep, text)
     w, sr = k.create(text, voice=a.voice, speed=speed, lang='en-us')
     return np.asarray(w, dtype=np.float64), sr
 

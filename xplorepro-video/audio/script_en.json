@@ -1,0 +1,94 @@
+{
+ "note": "English VO (Kokoro af_heart). [key|word] = sync anchor (keys and order match script_te.json; scenes depend on them). TTS-only respellings live in vo_en.py (TTS_FIX).",
+ "lines": [
+  {
+   "id": "L01",
+   "scene": "hook",
+   "en": "[season|Placement season.] [resume|Resume], [skills|skills], [mock|mock interviews], [deadlines|deadlines],",
+   "speed": 1.16
+  },
+  {
+   "id": "L02",
+   "scene": "hook",
+   "en": "[stop|no idea] where to start."
+  },
+  {
+   "id": "L03",
+   "scene": "reveal",
+   "en": "That's why [logo|XplorePro] exists.",
+   "speed": 1.2
+  },
+  {
+   "id": "L04",
+   "scene": "eco",
+   "en": "[students|Students], [colleges|colleges] and [corporates|companies], connected on one [ai|AI career platform]."
+  },
+  {
+   "id": "L05",
+   "scene": "eco",
+   "en": "[million|Over a million students], in [countries|six countries]."
+  },
+  {
+   "id": "L06",
+   "scene": "mentor",
+   "en": "Your [mentor|AI career mentor] reads your [resume|resume], [linkedin|LinkedIn] and [github|GitHub],"
+  },
+  {
+   "id": "L07",
+   "scene": "mentor",
+   "en": "then a [week|one-week journey] builds your [roadmap|personalised roadmap]."
+  },
+  {
+   "id": "L08",
+   "scene": "readiness",
+   "en": "[one|One number] that tracks your progress. Your [score|Placement Readiness Score].",
+   "speed": 1.15
+  },
+  {
+   "id": "L09",
+   "scene": "readiness",
+   "en": "[ats|ATS] filters? Fine-tune your [resume|resume]."
+  },
+  {
+   "id": "L10",
+   "scene": "readiness",
+   "en": "Practise [hr|HR], [technical|technical] and [coding|coding] rounds before the real [interview|interview].",
+   "speed": 1.18
+  },
+  {
+   "id": "L11",
+   "scene": "colleges",
+   "en": "For [colleges|colleges], [proctored|AI-proctored] [assessments|assessments]."
+  },
+  {
+   "id": "L12",
+   "scene": "colleges",
+   "en": "[flag|Flags] aren't [verdict|verdicts]. A [human|person] reviews the [evidence|evidence]."
+  },
+  {
+   "id": "L13",
+   "scene": "colleges",
+   "en": "Track [batch|batch] readiness on one [dashboard|dashboard]."
+  },
+  {
+   "id": "L14",
+   "scene": "corporates",
+   "en": "For [corporates|companies], from [source|source] to [deploy|deploy], [preassessed|pre-assessed] talent."
+  },
+  {
+   "id": "L15",
+   "scene": "corporates",
+   "en": "But the [decision|hiring decision] stays yours."
+  },
+  {
+   "id": "L16",
+   "scene": "converge",
+   "en": "[training|Training]. [assessments|Assessments]. [mentorship|AI career mentorship]."
+  },
+  {
+   "id": "L17",
+   "scene": "cta",
+   "en": "Want a [demo|demo]? [book|Book] yours at [url|XplorePro dot AI]."
+  }
+ ]
+}

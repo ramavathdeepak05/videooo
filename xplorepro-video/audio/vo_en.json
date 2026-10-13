@@ -1,0 +1,236 @@
+[
+ {
+  "id": "L01",
+  "file": "audio/vo_en/L01.wav",
+  "dur": 3.658,
+  "sr": 24000,
+  "speed": 1.16,
+  "voice": "af_heart",
+  "text": "Placement season. Resume, skills, mock interviews, deadlines,",
+  "anchors": {
+   "season": 0.05,
+   "resume": 0.93,
+   "skills": 1.59,
+   "mock": 2.05,
+   "deadlines": 2.93
+  }
+ },
+ {
+  "id": "L02",
+  "file": "audio/vo_en/L02.wav",
+  "dur": 1.398,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "no idea where to start.",
+  "anchors": {
+   "stop": 0.05
+  }
+ },
+ {
+  "id": "L03",
+  "file": "audio/vo_en/L03.wav",
+  "dur": 1.654,
+  "sr": 24000,
+  "speed": 1.2,
+  "voice": "af_heart",
+  "text": "That's why XplorePro exists.",
+  "anchors": {
+   "logo": 0.65
+  }
+ },
+ {
+  "id": "L04",
+  "file": "audio/vo_en/L04.wav",
+  "dur": 4.533,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "Students, colleges and companies, connected on one AI career platform.",
+  "anchors": {
+   "students": 0.05,
+   "colleges": 0.65,
+   "corporates": 1.41,
+   "ai": 2.89
+  }
+ },
+ {
+  "id": "L05",
+  "file": "audio/vo_en/L05.wav",
+  "dur": 2.209,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "Over a million students, in six countries.",
+  "anchors": {
+   "million": 0.05,
+   "countries": 1.55
+  }
+ },
+ {
+  "id": "L06",
+  "file": "audio/vo_en/L06.wav",
+  "dur": 3.787,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "Your AI career mentor reads your resume, LinkedIn and GitHub,",
+  "anchors": {
+   "mentor": 0.41,
+   "resume": 1.87,
+   "linkedin": 2.43,
+   "github": 3.31
+  }
+ },
+ {
+  "id": "L07",
+  "file": "audio/vo_en/L07.wav",
+  "dur": 3.019,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "then a one-week journey builds your personalised roadmap.",
+  "anchors": {
+   "week": 0.61,
+   "roadmap": 1.61
+  }
+ },
+ {
+  "id": "L08",
+  "file": "audio/vo_en/L08.wav",
+  "dur": 3.295,
+  "sr": 24000,
+  "speed": 1.15,
+  "voice": "af_heart",
+  "text": "One number that tracks your progress. Your Placement Readiness Score.",
+  "anchors": {
+   "one": 0.05,
+   "score": 2.19
+  }
+ },
+ {
+  "id": "L09",
+  "file": "audio/vo_en/L09.wav",
+  "dur": 2.485,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "ATS filters? Fine-tune your resume.",
+  "anchors": {
+   "ats": 0.05,
+   "resume": 1.99
+  }
+ },
+ {
+  "id": "L10",
+  "file": "audio/vo_en/L10.wav",
+  "dur": 3.786,
+  "sr": 24000,
+  "speed": 1.18,
+  "voice": "af_heart",
+  "text": "Practise HR, technical and coding rounds before the real interview.",
+  "anchors": {
+   "hr": 0.65,
+   "technical": 0.95,
+   "coding": 1.71,
+   "interview": 3.25
+  }
+ },
+ {
+  "id": "L11",
+  "file": "audio/vo_en/L11.wav",
+  "dur": 2.445,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "For colleges, AI-proctored assessments.",
+  "anchors": {
+   "colleges": 0.47,
+   "proctored": 0.89,
+   "assessments": 1.89
+  }
+ },
+ {
+  "id": "L12",
+  "file": "audio/vo_en/L12.wav",
+  "dur": 2.998,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "Flags aren't verdicts. A person reviews the evidence.",
+  "anchors": {
+   "flag": 0.05,
+   "verdict": 0.81,
+   "human": 1.55,
+   "evidence": 2.43
+  }
+ },
+ {
+  "id": "L13",
+  "file": "audio/vo_en/L13.wav",
+  "dur": 2.015,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "Track batch readiness on one dashboard.",
+  "anchors": {
+   "batch": 0.53,
+   "dashboard": 1.45
+  }
+ },
+ {
+  "id": "L14",
+  "file": "audio/vo_en/L14.wav",
+  "dur": 2.934,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "For companies, from source to deploy, pre-assessed talent.",
+  "anchors": {
+   "corporates": 0.47,
+   "source": 0.99,
+   "deploy": 1.53,
+   "preassessed": 1.91
+  }
+ },
+ {
+  "id": "L15",
+  "file": "audio/vo_en/L15.wav",
+  "dur": 1.953,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "But the hiring decision stays yours.",
+  "anchors": {
+   "decision": 0.59
+  }
+ },
+ {
+  "id": "L16",
+  "file": "audio/vo_en/L16.wav",
+  "dur": 2.89,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "Training. Assessments. AI career mentorship.",
+  "anchors": {
+   "training": 0.05,
+   "assessments": 0.61,
+   "mentorship": 1.31
+  }
+ },
+ {
+  "id": "L17",
+  "file": "audio/vo_en/L17.wav",
+  "dur": 3.19,
+  "sr": 24000,
+  "speed": 1.1,
+  "voice": "af_heart",
+  "text": "Want a demo? Book yours at XplorePro dot AI.",
+  "anchors": {
+   "demo": 0.55,
+   "book": 0.81,
+   "url": 1.55
+  }
+ }
+]
